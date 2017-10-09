@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="foo">
+    在全局函数中， this 永远指向window
+</div>
+<script>
+   //在全局函数中， this 永远指向window
+    console.log(this === window); //true
+   // 普通函数在调用时候（注意不是构造函数，前面不加new),其中的this也是指向window.
+    var x = 10;
+    function foo() {
+        console.log(this);//Window
+        console.log(this.x);// 10
+    }
+    foo();
+
+</script>
+</body>
+</html>

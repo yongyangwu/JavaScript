@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+
+</div>
+<script>
+    (function(){
+        a = 5;
+        alert(window.a);
+        var a = 10;
+        alert(a);
+    })();
+//  1、js中没有带var关键字的变量都是隐式全局变量
+//  2、js中存在变量提升
+//  var a=undefined;
+//  (function(){
+//      var a;    //局部变量a，默认值是undefined
+//      a = 5;    //因和局部变量名相同，因此全局变量a被覆盖，此处变成了给局部变量a赋值
+//      //alert(a);  弹出5
+//      //a只是变量，而不是属性 alert(a in window)返回false  ,参见http://segmentfault.com/q/1010000002883076 的第一个回答
+//      alert(window.a);
+//      a = 10;
+//      alert(a);
+//  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="foo">
+
+</div>
+<script>
+    // 1.在对象中调用
+//    var obj  ={
+//        x:10,
+//        foo:function () {
+//            console.log(this); //obj
+//            console.log(this.x);//10
+//        }
+//    };
+//    obj.foo();
+    //2.若是在对象方法中定义函数 那么情况就不同了
+//    var obj={
+//        x:10,
+//        foo:function () {
+////            return function f() {
+////                console.log(this);//Window
+////                console.log(this.x);//undefined
+////            }
+//            function f() {
+//                console.log(this);//Window
+//                console.log(this.x);//undefined
+//            }
+//            f()
+//        }
+//    };
+
+//    obj.foo();
+    function foo() {
+        console.log(this.x)
+    }
+    var obj={
+        x:10,
+        foo:foo
+    };
+    obj.foo();
+
+
+
+</script>
+</body>
+</html>

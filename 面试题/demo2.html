@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="" id="test" >XXX</a>
+
+<script>
+    var obj = {
+        innerHTML:"yyy",
+        init:function () {
+            document.getElementById("test").addEventListener("click",function () {
+                alert(this.innerHTML);
+            },false);
+        },
+        click:function () {
+            alert(this.innerHTML)
+        }
+    };
+    obj.init();
+
+//    function f1() {
+//        this.a1 = 1;
+//        this.a2 = 2;
+//    }
+//    function f2() {
+//        this.a2 =3;
+//        this.b2 = 4;
+//    }
+//    f1.prototype = new f2();
+
+
+</script>
+
+</body>
+</html>

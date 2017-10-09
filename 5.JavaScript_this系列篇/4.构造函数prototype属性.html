@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="foo">
+
+</div>
+<script>
+function Foo() {
+    this.x = 10;
+}
+Foo.prototype.getX = function () {
+    console.log(this);
+    console.log(this.x);
+};
+var foo=new Foo();
+foo.getX();
+
+// 在 Foo.prototype.getX 函数中，this指向的foo对象，不仅仅如此，即便在整个原型链中，this代表的也是当前对象的值
+
+</script>
+</body>
+</html>
