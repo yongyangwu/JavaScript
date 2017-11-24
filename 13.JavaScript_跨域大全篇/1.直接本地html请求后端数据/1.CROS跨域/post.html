@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="getData()">发送请求</button>
+
+<script>
+    var xhr = new XMLHttpRequest();
+    function getData() {
+        xhr.open("post","http://127.0.0.1:3000");
+        var obj={age:20};
+        xhr.send(JSON.stringify(obj));//必须要转换成JSON字符串传给后台才能正确接收
+
+    }
+    xhr.onreadystatechange=function () {
+        if(xhr.status==200 && xhr.readyState==4){
+            console.log(xhr.responseText);
+        }
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>get方法跨域请求数据</title>
+</head>
+<body>
+<button onclick="getData()">请求数据</button>
+
+<!--直接在本地打开这个html文件去请求后端数据实际上也就产生了跨域-->
+
+<script>
+    var xhr = new XMLHttpRequest();//创建xhr对象 这里不考虑浏览器兼容问题
+    function getData(){
+        xhr.open("get","http://127.0.0.1:3000");
+        xhr.send(null);
+    }
+    xhr.onreadystatechange=function () {
+        if(xhr.status==200 && xhr.readyState==4){
+            console.log(xhr.responseText);
+        }
+    }
+</script>
+</body>
+</html>

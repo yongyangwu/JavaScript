@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div id="d1"></div>
+</head>
+<body>
+<script>
+    var name = "bob";
+    var list = `this is
+    ${name}
+    introduce`;
+    var lists = document.createTextNode(list)
+    document.getElementById("d1").appendChild(lists);
+</script>
+
+</body>
+</html>

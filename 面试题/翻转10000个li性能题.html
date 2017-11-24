@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<ul>
+<ul id="ul1">
     <li>1</li>
     <li>2</li>
     <li>3</li>
@@ -17,10 +17,11 @@
 
 <script>
     var lis = document.getElementsByTagName("li");
+    var fragment = document.createDocumentFragment();
     for(var i=lis.length; i>1;i--){
-         document.createElement("li").innerHTML=(lis[lis.length-1].innerHTML);
-
+         fragment.appendChild(document.createElement("li").innerHTML=(lis[lis.length-1].innerHTML));
     }
+    document.getElementById("ul1").appendChild(fragment);
 //    var divs = document.createElement("div");
 //    divs.innerHTML="sddsd";
 ////    var textnode = document.createTextNode("dddd");
