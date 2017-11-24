@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="mylinks">
+    <li id="mylink1">11111111111</li>
+    <li id="mylink2">222222222222</li>
+    <li id="mylink3">3333333</li>
+</ul>
+
+<script>
+    var EventUtil = {
+        addHandler:function (element,type,handler) {
+            if(element.addEventListener){
+                element.addEventListener(type,handler,false);
+            }else if(element.attachEvent){
+                element.attachEvent("on"+ type, handler);
+            }else{
+                element["on"+ type]= handler;
+            }
+        },
+        removeHandler:function (element, type,handler) {
+            if(element.removeEventListener){
+                element.removeEventListener(type,handler,false);
+            }else if(element.detachEvent){
+                element.detachEvent("on",type,handler);
+            }else{
+                element["on"+ type] = null;
+            }
+        },
+        getEvent:function (event) {
+            return event ? event :window.event;
+        },
+        getTarget:function (event) {
+            return event.target || event.srcElement;
+        },
+        preventDefault:function (event) {
+           if(event.preventDefault){
+               event.preventDefault();
+           }else{
+               event.returnValue = false;
+           }
+        },
+        stopPropagation:function (event) {
+            if(event.stopPropagation){
+                event.stopPropagation();
+            }else{
+                event.cancleBubble = true;
+            }
+        }
+    }
+    var mylinks =document.getElementById("mylinks");
+    EventUtil.addHandler(mylinks,"click",function (event) {
+        event = EventUtil.getEvent(event);
+        var target = EventUtil.getTarget(event);
+        switch(target.id){
+            case "mylink1":
+                alert("1");
+                break;
+            case "mylink2":
+                alert("2");
+                break;
+            case "mylink3":
+                alert("3");
+                break;
+        }
+    })
+
+</script>
+
+</body>
+</html>

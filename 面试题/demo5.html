@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Child() {
+        this.a = 1;
+        this.show= function () {
+            console.log(this.a);
+        }
+
+    }
+    var child1 = new Child();
+    console.log(child1.a);
+    child1.a = 3;
+    console.log(child1.a);
+    child1.show();
+</script>
+
+</body>
+</html>

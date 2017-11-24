@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+</ul>
+
+<script>
+    var lis = document.getElementsByTagName("li");
+    for(var i=lis.length; i>1;i--){
+         document.createElement("li").innerHTML=(lis[lis.length-1].innerHTML);
+
+    }
+//    var divs = document.createElement("div");
+//    divs.innerHTML="sddsd";
+////    var textnode = document.createTextNode("dddd");
+////    divs.appendChild(textnode);
+////    divs.appendChild("ddddd");
+//    document.body.appendChild(divs);
+
+
+</script>
+
+</body>
+</html>
