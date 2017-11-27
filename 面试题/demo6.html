@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    String.prototype.repeatify = String.prototype.repeatify || function (times) {
+        var str = "";
+        for(var i =0; i<times;i++){
+            debugger;
+            console.log(this);
+            str += this;
+        }
+        return str;
+    };
+    var a = "hello";
+    "hello".repeatify(2);
+</script>
+
+</body>
+</html>

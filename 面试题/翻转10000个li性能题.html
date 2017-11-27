@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+
+        ul {
+            transform: rotate(180deg)
+        }
+        li {
+            flex-direction:row-reverse;
+            transform: rotate(180deg)
+        }
+
+    </style>
 </head>
 <body>
 <ul id="ul1">
@@ -15,13 +26,18 @@
     <li>7</li>
 </ul>
 
+
 <script>
-    var lis = document.getElementsByTagName("li");
-    var fragment = document.createDocumentFragment();
-    for(var i=lis.length; i>1;i--){
-         fragment.appendChild(document.createElement("li").innerHTML=(lis[lis.length-1].innerHTML));
-    }
-    document.getElementById("ul1").appendChild(fragment);
+//    var lis = document.getElementsByTagName("li");
+//    var content = "";
+//    for(var i=lis.length; i>0;i--){
+//        content = content + "<li>"+ lis[i-1].innerHTML+ "</li>";
+////        debugger
+//    }
+//    content = "<ul>" + content + "</ul>";
+//    document.write(content)
+//    textNode = document.createTextNode(content);
+//    document.getElementById("ul1").appendChild(textNode);
 //    var divs = document.createElement("div");
 //    divs.innerHTML="sddsd";
 ////    var textnode = document.createTextNode("dddd");

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function createPerson(name,age){
+        var obj = new Object();
+        obj.name = name;
+        obj.age = age;
+        obj.sayName= function () {
+            alert(this.name);
+        };
+        return obj;
+    }
+    var person1 = createPerson("tom",26);
+    var person2 = createPerson("bella",24);
+    //
+</script>
+
+</body>
+</html>

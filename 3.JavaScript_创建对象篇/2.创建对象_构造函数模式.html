@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        this.sayName = sayName;
+    }
+    function sayName() {
+        alert(this.name);
+    }
+    var person1 = new Person("tom",23);
+    var person2 = new Person("bob",25);
+    console.log(person1.sayName === person2.sayName);
+</script>
+
+</body>
+</html>
