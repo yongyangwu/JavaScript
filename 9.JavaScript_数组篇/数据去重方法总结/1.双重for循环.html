@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var arr = [1,2,1];
+
+    function unique(array){
+        var res = [];
+        for(var i=0; i<array.length;i++ ){
+
+
+           for(var j =0; j<res.length;j++){
+
+                if(array[i]===res[j]){
+                    break;
+                }
+            }
+
+
+            if(j === res.length){
+               res.push(array[i]);
+            }
+         }
+
+         return res;
+    }
+    console.log(unique(arr))
+
+</script>
+
+</body>
+</html>
