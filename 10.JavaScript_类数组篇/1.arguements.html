@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function outer() {
+        inner();
+//        console.log(inner.caller)
+    }
+    function inner(){
+        console.log(inner.caller)
+    }
+    outer()
+//    console.log(inner.caller)
+
+</script>
+
+</body>
+</html>

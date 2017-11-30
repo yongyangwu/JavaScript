@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //1.__proto__继承
+//    var a ={
+//        name:"bob"
+//    };
+//    var b = {
+//        name:"tom",
+//        age:23
+//    };
+//    a.__proto__ = b;
+//    console.log(a.age);
+
+    //2.Object.create()实现新对象的继承
+//    var b ={
+//        name:"bob"
+//    };
+//    var a = Object.create(b);
+//    console.log(a.name);
+    //
+
+    // 3.
+//    function Foo(){
+//        this.name = "bob";
+//    }
+//    var b ={
+//        age:23
+//    };
+//    Foo.__proto__ = b;
+//    console.log(Foo.constructor)
+
+//     function Fun1(){
+//         this.name = "bob";
+//     }
+//     function Fun2(){
+//         this.age = 23;
+//     }
+//     console.log(Fun1.prototype.constructor);
+//     Fun1.prototype = new Fun2();
+//    console.log(Fun1.prototype.constructor);
+//     var person = new Fun2();
+//     console.log(  person.name)
+    function Person() {
+        this.name="bob";
+    }
+    console.log(Person.prototype.__proto__);
+    var person1 = new Person();
+    console.log(person1.__proto__.__proto__)
+    var obj = new Object();
+    console.log(Object.prototype == obj.__proto__)
+    var arr=[1,2,3];
+    console.log(arr.__proto__)
+
+
+
+
+
+</script>
+
+</body>
+</html>
