@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function object(o){
+      function F(){}
+      F.prototype =o;
+      return new F();
+  }
+  var person = {
+      name:"tom",
+      friends:["chery","bob","bella"]
+  };
+ var person1 = object(person);
+  person1.name = "kate";
+  person1.friends.push("gary");
+
+</script>
+
+</body>
+</html>

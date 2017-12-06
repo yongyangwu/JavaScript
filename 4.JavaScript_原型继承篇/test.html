@@ -34,7 +34,19 @@
 //console.log(a.name);
 //console.log(a.age);
 
-console.log(Date.__proto__ === Function.__proto__);
+// console.log(Date.__proto__ === Function.__proto__);
+ function Person(name) {
+     this.name = name;
+ }
+
+function aa() {
+
+}
+console.log(Person.__proto__===aa.__proto__)
+ var person1 = new Person("bob");
+ console.log(Person.prototype.__proto__===Object.prototype);
+console.log(Array.prototype.__proto__===Object.prototype);
+
 </script>
 
 </body>

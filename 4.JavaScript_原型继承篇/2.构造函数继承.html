@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   function Parent(familyName) {
+       this.familyName = familyName;
+   }
+   function Children(age) {
+       Parent.call(this,"green");
+       this.age =age;
+   }
+   var child1 = new Children(23);
+   console.log(child1.familyName);
+
+</script>
+
+</body>
+</html>
