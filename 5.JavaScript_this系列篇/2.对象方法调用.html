@@ -5,46 +5,62 @@
     <title>Title</title>
 </head>
 <body>
-<div id="foo">
+<div>
+    <p>1.在对象中调用</p>
+    <p>2.若是在对象方法中定义函数 那么情况就不同了</p>
+    <p>3.如果 foo 函数不作为对象方法被调用</p>
 
 </div>
 <script>
     // 1.在对象中调用
-//    var obj  ={
-//        x:10,
-//        foo:function () {
-//            console.log(this); //obj
-//            console.log(this.x);//10
-//        }
-//    };
-//    obj.foo();
+   // var x = 2;
+   // var obj  ={
+   //     x:10,
+   //     foo:function () {
+   //         console.log(this); //obj
+   //         console.log(this.x);//10
+   //     }
+   // };
+   // obj.foo();
+  // 变形一下
+  //   var x = 2;
+  //   function foo() {
+  //       console.log(this.x)
+  //   }
+  //   var obj={
+  //       x:10,
+  //       foo:foo
+  //   };
+  //   obj.foo();
+
     //2.若是在对象方法中定义函数 那么情况就不同了
-//    var obj={
+//    var x = 2;
+//    var obj ={
 //        x:10,
 //        foo:function () {
-////            return function f() {
-////                console.log(this);//Window
-////                console.log(this.x);//undefined
-////            }
+// //            return function f() {
+// //                console.log(this);// Window
+// //                console.log(this.x);// 2
+// //            }
 //            function f() {
-//                console.log(this);//Window
-//                console.log(this.x);//undefined
+//                console.log(this);// Window
+//                console.log(this.x);// 2
 //            }
 //            f()
 //        }
 //    };
+//    obj.foo(); //可以这么理解：函数 f 虽然是在 obj.foo 内部定义的，但它仍然属于一个普通函数，this 仍指向 window。
 
-//    obj.foo();
-    function foo() {
-        console.log(this.x)
-    }
-    var obj={
-        x:10,
-        foo:foo
-    };
-    obj.foo();
-
-
+    //3.如果 foo 函数不作为对象方法被调用：
+    // var obj = {
+    //     x: 10,
+    //     foo: function () {
+    //         console.log(this);       //Window
+    //         console.log(this.x);     //undefined
+    //     }
+    // };
+    // var fn = obj.foo;
+    // fn(); // obj.foo 被赋值给一个全局变量，并没有作为 obj 的一个属性被调用，那么此时 this 的值是 window。
 
 </script>
 </body>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var name = 'my name is window';
+    var obj = {
+        name: 'my name is obj',
+        fn: function () {
+            setInterval(function () {
+                console.log(this.name);   //my name is obj
+            }, 1000)
+        }
+    };
+    console.log(obj.fn())
+</script>
+
+</body>
+</html>

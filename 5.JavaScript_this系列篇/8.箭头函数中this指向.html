@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var obj = {
+        x: 10,
+        foo: function() {
+            var fn = () => {
+                return () => {
+                    return () => {
+                        console.log(this);      //Object {x: 10}
+                        console.log(this.x);    //10
+                    }
+                }
+            }
+            fn()()();
+        }
+    }
+    obj.foo();//箭头函数完全修复了 this 的指向，this 总是指向词法作用域，也就是外层调用者 obj。
+</script>
+
+</body>
+</html>

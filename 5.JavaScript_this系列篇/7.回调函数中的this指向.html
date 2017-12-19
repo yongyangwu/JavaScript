@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function getUrl() {
+        console.log(this.document.URL);
+    }
+    var pseudoWindow = {
+        document: {
+            URL: "I'm fake URL"
+        },
+        getUrl1: getUrl,
+        getUrl2: function (callback) {
+            callback();
+            this.func = callback;
+            this.func();
+        }
+    };
+    pseudoWindow.getUrl2(getUrl)
+</script>
+
+</body>
+</html>
