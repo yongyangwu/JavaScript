@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="father">
+<div id="son">
+    sdsdsdsfasds
+</div>
+sdfsf s11111
+
+
+<script>
+    var father = document.getElementById("father");
+    father.onclick=function (ev) {
+        alert(ev.target.id);
+        alert(ev.currentTarget === this);
+        alert(ev.target === this);
+    }
+
+</script>
+
+</body>
+</html>
