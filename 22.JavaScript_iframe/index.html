@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="button" type="button" value="调用child.html中的函数say()" onclick="callChild()"/>
+<iframe name="myFrame" src="child.html"></iframe>
+
+
+<script type="text/javascript">
+    function say(){
+        alert("parent.html");
+    }
+    function callChild(){
+        myFrame.window.say();
+        myFrame.window.document.getElementById("button").value="调用结束";
+    }
+    console.log(window.frames[0])
+</script>
+
+</body>
+</html>
