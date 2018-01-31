@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+
+
+<script>
+
+var arr = document.getElementsByTagName("li");
+console.log(arr);
+
+for(var i = 0; i < arr.length; i++){
+    arr[i].onclick = function (i) {
+        console.log(i);
+    }
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // function log() {
+  //     // console.log(arguments)
+  //     console.log(arguments);
+  // }
+  function print() {
+      console.log()
+  }
+  function log() {
+      console.log(arguments);
+      console.log.apply(this,arguments);
+  }
+  log(22,23);
+  console.log(console)
+</script>
+
+</body>
+</html>

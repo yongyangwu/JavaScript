@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+obj={
+    name:"bob"
+};
+
+ function log() {
+     console.log.apply(Math,arguments);
+     //解析在这个例子中第一个参数只要是已经存在的对象都可以 其实这个参数在本题中没有
+     //任何意义的 只是为了用apply的第二个参数 这样就可以重新指向一遍console.log的同时把未知的参数传给console.log
+ }
+ log(1,2,3)
+
+
+</script>
+
+</body>
+</html>

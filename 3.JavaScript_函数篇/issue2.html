@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  var str ="hello";
+  Object.prototype.say = function () {
+      console.log(2222)
+  };
+
+  // console.log(str.slice(1,3))
+    console.log(str.say());
+
+    function foo(){
+
+    }
+    console.log(foo.say());
+    function Foo(){
+
+    }
+    var f1 = new Foo();
+
+    console.log(f1.say());
+    console.log(f1.constructor)
+
+    var obj =new Object();
+    obj.say()
+    console.log(obj.constructor)
+    var str = "hello";
+    console.log(str.constructor)
+
+    String.prototype.repeatify = String.prototype.repeatify || function (times) {
+        var result = "";
+        for(var i =0; i<times;i++){
+            result += this;
+        }
+        return result;
+
+    };
+
+    function repeat(str,times){
+        var result = "";
+        for(var i=0; i<times;i++ ){
+            result += str;
+        }
+        return result
+    }
+
+    console.log(repeat("name",3))
+
+</script>
+
+</body>
+</html>

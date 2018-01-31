@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>深拷贝方法2_递归拷贝 </div>
+
+<script>
+    function deepClone(initialObj) {
+        var obj = finalObj || {};
+        for(var i in initialObj){
+            if(typeof initialObj[i] === 'object'){
+                obj[i] = (intialObj[i].constructor === Array) ?[] :{};
+                arguments.callee(initialObj[i],obj[i]);
+            }else{
+                obj[i] = initialObj[i]
+            }
+        }
+        return obj
+    }
+
+
+
+</script>
+
+</body>
+</html>

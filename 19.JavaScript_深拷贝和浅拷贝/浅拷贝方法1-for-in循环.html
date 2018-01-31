@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //方法一： for in 循环
+
+
+    var initialObj = {
+        a:1,
+        b:"bob",
+        c:[1,2,3],
+        d:{
+            age:27
+        }
+    };
+    function simpleClone(initialObj) {
+        var obj = {};
+        for(var i in initialObj){
+            obj[i] = initialObj[i];
+        }
+        return obj;
+    }
+    var cloneObj = simpleClone(initialObj);
+    cloneObj.c=[4,5,6];
+    console.log(initialObj.c)
+
+
+</script>
+
+
+
+</body>
+</html>

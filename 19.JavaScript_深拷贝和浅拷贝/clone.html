@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+   // Object.prototype.clone = function () {
+   //     // console.log(this.constructor)
+   //     var o =this.constructor === Array ? []:{};
+   //     for(var e in this){
+   //         o[e] = typeof this[e] === "object" ? this[e].clone() :this[e];
+   //     }
+   //     return o;
+   // };
+   function clone( obj ) {
+       var copy;
+       switch (typeof obj) {
+           case "undefined":
+               break;
+           case "number":
+               copy = obj;
+               break;
+           case "string":
+               copy = obj;
+               break;
+           case "boolean":
+               copy = obj;
+               break;
+           case "object":  //object分为两种情况 对象（Object）和数组（Array）
+               if (obj === null) {
+                   copy = null;
+               } else {
+                   if (Object.prototype.toString.call(obj).slice(8, -1) === "Array") {
+                       copy = [];
+                       for (var i = 0; i < obj.length; i++) {
+                           copy.push(clone(obj[i]));
+                       }
+                   } else {
+                       copy = {};
+                       for (var j in obj) {
+                           copy[j] = clone(obj[j]);
+                       }
+                   }
+               }
+               break;
+           default:
+               copy = obj;
+               break;
+       }
+       return copy;
+   }
+   var obj1 = 2;
+   console.log(clone(obj1))
+
+    var arr = [1,2,3,4,5,6];
+   console.log(Object.prototype.toString.call(obj1))
+</script>
+
+</body>
+</html>

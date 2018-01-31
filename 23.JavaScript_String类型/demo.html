@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str = "hello";
+    var patt = /hello/g;
+    console.log(patt.test(str));
+    console.log(patt.exec(str));
+
+    function isPoneAvailable(str) {
+        var myreg=/[1][3,4,5,7,8][0-9]{9}/;
+        if(myreg.test(str)){
+            alert("手机号码符合要求")
+        }else{
+            alert("手机号码不符合要求")
+        }
+    }
+    isPoneAvailable(13951915061);
+
+</script>
+
+</body>
+</html>

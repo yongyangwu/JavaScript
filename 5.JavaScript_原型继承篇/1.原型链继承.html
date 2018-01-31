@@ -6,21 +6,26 @@
 </head>
 <body>
 <script>
-    function SuperType() {
-        this.property = true;
-    }
+ function Person(){
+     this.name = "bob";
+ }
 
-    SuperType.prototype.getSuperValue = function () {
-        return this.property;
-    };
-    function SubType() {
-        this.subproperty = false;
-    }
-    SubType.prototype = new SuperType();
-    SubType.prototype.getSubValue =function () {
-        return this.subproperty
-    }
-    var instance = new SubType();
+ function Speices(){
+     this.home = "earth";
+ }
+ Person.prototype.sayName = function () {
+     console.log(this.name);
+ };
+
+ Speices.prototype.sayName = function () {
+     console.log(this.home);
+ };
+ Person.prototype = new Speices();
+ var person1 = new Person();
+ console.log(person1 instanceof Speices);
+
+ var str = "hello";
+ console.log(str.slice(1,3))
     
 </script>
 

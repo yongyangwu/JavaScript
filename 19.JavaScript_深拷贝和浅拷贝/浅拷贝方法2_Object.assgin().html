@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var initialObj = {
+        a:1,
+        b:"bob",
+        c:[1,2,3],
+        d:{
+            age:27
+        }
+    };
+    var cloneObj = Object.assign({},initialObj);
+    console.log(cloneObj)
+    cloneObj.d.age = 333;
+    console.log(initialObj.d.age)
+    
+
+</script>
+
+
+
+</body>
+</html>
