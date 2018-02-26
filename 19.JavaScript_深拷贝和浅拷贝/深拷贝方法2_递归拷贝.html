@@ -8,7 +8,7 @@
 <div>深拷贝方法2_递归拷贝 </div>
 
 <script>
-    function deepClone(initialObj) {
+    function deepClone(initialObj,finalObj) {
         var obj = finalObj || {};
         for(var i in initialObj){
             if(typeof initialObj[i] === 'object'){

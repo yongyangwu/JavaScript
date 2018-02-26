@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var classType = { };
+        // 生成classType映射
+        //"Boolean Number String Function Array Date RegExp Object Error Null Undefined".split(" ") = ['Boolean",...]
+        "Boolean Number String Function Array Date RegExp Object Error Null Undefined".split(" ").map(function(item,index){
+            classType["[object"+item +"]"] = item.toLowerCase();
+        });
+
+        function checkType(obj){
+           return typeof obj === 'object' || typeof obj === 'function' ? 
+           classType[Object.prototype.toString.call(obj)] || 'object' :
+           typeof obj;
+        }
+        var obj = {
+            name:"bob",
+            age:27
+        };
+        console.log(obj['name']);
+
+    </script>
+    
+</body>
+</html>
