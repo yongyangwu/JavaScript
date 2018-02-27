@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型的概念</title>
+</head>
+<body>
+
+<script>
+    //只有函数都有prototype属性
+    //每个对象都有__prototype__属性
+    //我们创建的每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，而这个对象的用途是
+    //包含由特定类型的所有实例共享的属性和方法。
+    //按照字面意思来理解那么 prototype 就是通过 调用构造函数 而创建的 那个对象 的 实例 的 原型对象
+    //原型对象的好处是可以让所有对象实例共享它（原型对象）所包含的属性和方法
+    function Person(){
+
+    }
+    Person.prototype.name = "bob";
+    Person.prototype.sayName = function(){
+        alert(this.name);
+    };
+    var person1 = new Person();//这段代码就是调用构造函数而创建的实例对象 那么Person.prototype就是person1的原型对象
+    // person1.__proto__ = Person.prototype;
+
+
+
+</script>
+
+</body>
+</html>
