@@ -10,12 +10,13 @@
 <script>
     function deepClone(initialObj,finalObj) {
         debugger;
-        console.log(initialObj)
-        console.log(finalObj)
+        // console.log(initialObj)
+        // console.log(finalObj)
         var obj = finalObj || {};
         for(var i in initialObj){
             if(typeof initialObj[i] === 'object'){
-                obj[i] = (initialObj[i].constructor === Array) ?[] :{};
+                // obj[i] = (initialObj[i].constructor === Array) ?[] :{};
+                obj[i] = {};
                 arguments.callee(initialObj[i],obj[i]);
             }else{
                 obj[i] = initialObj[i];
