@@ -14,6 +14,7 @@
         var obj={age:20};
         xhr.send(JSON.stringify(obj));//必须要转换成JSON字符串传给后台才能正确接收
 
+
     }
     xhr.onreadystatechange=function () {
         if(xhr.status==200 && xhr.readyState==4){

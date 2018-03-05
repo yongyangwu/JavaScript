@@ -12,7 +12,7 @@
 <script>
     var xhr = new XMLHttpRequest();//创建xhr对象 这里不考虑浏览器兼容问题
     function getData(){
-        xhr.open("get","http://127.0.0.1:3000");
+        xhr.open("get","http://127.0.0.1:3001/api");
         xhr.send(null);
     }
     //!!! 注意这里虽然是跨域请求 虽然控制台拿不到数据会报错
