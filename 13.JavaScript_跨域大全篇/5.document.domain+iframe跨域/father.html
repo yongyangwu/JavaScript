@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div> this is father page</div>
+<!--<iframe id="iframe" src="http://child.domain.com/b.html"></iframe>-->
+<!--<script>-->
+<!--document.domain = 'domain.com';-->
+<!--var user = 'admin';-->
+<!--</script>-->
+<iframe id="iframe" src="http://localhost:3001/son.html"></iframe>
+<script>
+    document.domain = 'http://localhost';
+    var user = 'admin';
+</script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 回调执行函数
+    function onBack(res) {
+        alert(JSON.stringify(res));
+    }
+</script>
+<script src="http://localhost:8000/login?callback=onBack"> </script>
+
+</body>
+</html>
