@@ -14,17 +14,13 @@
         "Boolean Number String Function Array Date RegExp Object Error Null Undefined".split(" ").map(function(item,index){
             classType["[object"+item +"]"] = item.toLowerCase();
         });
-
+        console.log(classType);
         function checkType(obj){
-           return typeof obj === 'object' || typeof obj === 'function' ? 
+           return typeof obj === 'object' || typeof obj === 'function' ?
            classType[Object.prototype.toString.call(obj)] || 'object' :
            typeof obj;
         }
-        var obj = {
-            name:"bob",
-            age:27
-        };
-        console.log(obj['name']);
+
 
     </script>
     
