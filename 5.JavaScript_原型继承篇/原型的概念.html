@@ -14,9 +14,9 @@
      1.什么叫JavaScript的原型？
     答：JavaScript的原型其实就是一个对象的属性,只不过这个属性很特殊，对于外界一般来说不可见的 chrome中可以通过__proto__获取
     2.那么什么是原型链了？
-    答：obj1.__proto__ = obj2;  obj2.__proto__ = obj3;  .....==>Object.prototype ==>null;
-        就是某一对象的原型属性保存或者等于另一个对象 由此类推就形成了原型链
+    答：就是某一对象的原型属性保存或者等于另一个对象 由此类推就形成了原型链
         链的终点是Object.prototype对象，因此Object.prototype没有原型，但我们构建一个对象这个对象的默认原型就是Object.prototype
+        obj1.__proto__ = obj2;  obj2.__proto__ = obj3;  .....==>Object.prototype ==>null;
     */
     var a = { };
     console.log(Object.prototype ===a.__proto__);
