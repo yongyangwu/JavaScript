@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<meta name="viewport" content="width=device-width,initial-scale=0.5"/>-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 100%;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<div>
+
+</div>
+<body>
+
+<script>
+
+    console.log(document.documentElement.clientWidth)
+    console.log(window.innerWidth)
+    console.log(document.documentElement)
+    /*
+    1.
+    适配的目标：
+    在不同尺寸的手机设备上，页面“相对性的达到合理的展示（自适应）”或者“保持统一效果的等比缩放（看起来差不多）”
+    完美适配：
+
+    2.理解三个viewpoint至关重要
+       layout viewport 布局视口DOM宽度 = document.documentElement.clientWidth
+       visual viewport 可见视口屏幕宽度 = window.innerWidth
+       ideal viewport 理想适口：使布局视口就是可见视口
+    设备宽度(visual viewport)与DOM宽度(layout viewport), scale的关系为：
+   （visual viewport）= （layout viewport）* scale
+    获取屏幕宽度(visual viewport)的尺寸：window. innerWidth/Height。
+    获取DOM宽度(layout viewport)的尺寸：document. documentElement. clientWidth/Height。
+    通过缩放设备的viewpoint来实现完美适配 以iPhone6为例
+
+
+    */
+    /*
+    设备物理像素（设备分辨率） iPhone4S 640*960px   iPhone5 640*1136px iPhone6 750*1334px iPhone6 Plus 1080*1920px
+    注：设备的物理像素的每一个px是有大小的
+    设备独立像素基本上就等于设备的CSS像素
+    dpr（设备像素比） = 设备物理像素 / 设备独立像素
+            在这里我们有一个结论：不同设备只要ppi相同也就意味着这个设备的1px大小是一样的
+            iPhone4 的ppi = 根号下（640*640 + 960*960）/3.5 = 329  iPhone5 ppi = 325  iPhone6 ppi = 325
+    注：这三个因素有一个不是人为可以更改的就是设备物理像素，设备的物理像素一旦诞生了就不可更改了。
+    到这里iPhone4s iPhone5 iPhone6 都是遵循这个规律的
+    但是在iPhone6 Plus下面这个公式却不成立了
+    iPhone6 Plus 的设备物理分辨是1080*1920px 但是设备独立分辨率是414*736px dpr是3
+    显然设备物理分辨率这个事实是不能更改的，接下来的两个参数变量在实际中必须有一个是不靠谱的
+    那么按照逻辑分析必须要是dpr不靠谱。因为在Web编程中你写width:320px是可以铺满整个屏幕宽度的，这个时候我们只能去让dpr不靠谱 确实dpr不靠谱也不会被验证
+    其实dpr只是想告诉我们Web编程中的1px 实际在设备上是多少个物理像素px来渲染，iPhone6 Plus 的dpr用js检测是3 也就说我们写的一个border:1px 宣称是3个物理
+    像素px渲染的 但是根据iPhone6 Plus的设备独立像素是414*736px 来推算 实际border:1px 应该是1080/414 = 2.6 个物理像素px来渲染才对
+
+
+     */
+
+
+</script>
+
+</body>
+</html>
