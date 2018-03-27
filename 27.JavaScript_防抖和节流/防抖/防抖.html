@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container{
+            width: 100%;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            color: #fff;
+            background-color: #444;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+
+</div>
+
+<script>
+    //1.没有考虑防抖的情况下的代码
+    // var count = 1;
+    // var container = document.getElementById('container');
+    // function getUserAction() {
+    //     console.log(this);
+    //     container.innerHTML = count++;
+    //
+    // }
+    // container.onmousemove = getUserAction;
+    //防抖的原理就是：你尽管触发事件，但是我一定是在事件触发n秒后才执行，如果你在一个事件触发的n秒内又触发这个事件，那我就以新的事件的时间为基准，n秒后才执行。
+    //总之，就是要等你触发完事件n秒内不再触发事件，我才执行。
+    //2.考虑防抖的情况下的代码
+    // var count = 1;
+    // var container = document.getElementById('container');
+    // function getUserAction() {
+    //     // console.log(3,this);// setTimeout 中的延迟执行函数中的this执行window
+    //     container.innerHTML = count++;
+    // }
+    // function debounce(func,wait) {
+    //     // console.log(1,this);//debounce 是在全局环境中调用的所以this指向window
+    //     var timeout;
+    //     return function () {
+    //         // console.log(2,this);//这里返回的是一个待执行的匿名函数将要在onmousemove事件下触发了所以这里的this指向事件触发的DOM节点
+    //         clearTimeout(timeout);
+    //         timeout = setTimeout(func,wait);
+    //     }
+    // }
+    // container.onmousemove = debounce(getUserAction, 1000);
+    //3.我们需要修复两个小问题：1.this指向 2.event对象
+    var count = 1;
+    var container = document.getElementById('container');
+    function getUserAction() {
+        // console.log(3,this);// setTimeout 中的延迟执行函数中的this执行window
+        container.innerHTML = count++;
+    }
+    function debounce(func,wait) {
+        var timeout;
+        return function(){
+            var context = this;
+            var args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(function(){
+                func.apply(context,args)
+            },wait);
+        }
+    }
+    container.onmousemove = debounce(getUserAction, 1000);
+
+    
+
+</script>
+</body>
+</html>
