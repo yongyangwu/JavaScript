@@ -17,10 +17,10 @@
                         console.log(this.x);    //10
                     }
                 }
-            }
+            };
             fn()()();
         }
-    }
+    };
     obj.foo();//箭头函数完全修复了 this 的指向，this 总是指向词法作用域，也就是外层调用者 obj。
 </script>
 
