@@ -7,7 +7,7 @@
 <body>
 
 <script>
-   // 类数组/伪数组 有length 属性；属性值为数字
+   // 类数组/伪数组   有length 属性；属性值为数字
    //1.
      var myobject = {
          length:4,
@@ -20,6 +20,10 @@
      //arguments
      //3.
      var lis = document.getElementsByTagName('li');
+
+     //以上三类都是常见的类数组不能直接用数组的方法；现在我们进行以下处理就可以用数组的方法了
+     Array.prototype.slice.call(arguments);
+
 
    // 查看 V8 引擎 array.js 的源码，可以将 slice 的内部实现简化为：
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /*
+       闭包的概念：闭包是指有权访问另外一个函数作用域中的变量的函数
+
+     */
+
+    var x = 20;
+    var a = {
+        x: 15,
+        fn: function() {
+            var x = 30;
+            return function() {
+                return x;
+            };
+        }
+    }
+    console.log(a.fn());
+    console.log(a.fn()());
+    console.log(a.fn().call(this));
+</script>
+
+</body>
+</html>
