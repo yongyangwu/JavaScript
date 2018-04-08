@@ -15,6 +15,99 @@
 </div>
 
 <script>
+//    //  1.__proto__继承 不能显式的用
+//    // var a ={
+//    //     name:"bob"
+//    // };
+//    // var b = {
+//    //     name:"tom",
+//    //     age:23
+//    // };
+//    // a.__proto__ = b;
+//    // console.log(a.age);
+//
+//    //  2.Object.create()实现新对象的继承 此方法可以直接用的
+//    // var b ={
+//    //     name:"bob"
+//    // };
+//    // var a = Object.create(b);
+//    // console.log(a.name);
+//
+//
+//    //  3.
+//    // function Foo(){
+//    //     this.name = "bob";
+//    // }
+//    // var b ={
+//    //     age:23
+//    // };
+//    // Foo.__proto__ = b;
+//    // console.log(Foo.constructor)
+//
+//     function Fun1(){
+//         this.name = "bob";
+//     }
+//     function Fun2(){
+//         this.age = 23;
+//     }
+//     var person1 = new Fun1();
+//     // 此时 person1.__proto__ = Fun1.prototype;
+//     //接下来我们改变person1.__proto__指向来实现继承 但是不能显示的用__proto__ 来实现继承所以我们需要换一种方法
+//     // person1.__proto__ = new Fun2();
+//     // console.log(person1.age)
+//
+//    // 因为person1.__proto__ = Fun1.prototype 但是Fun1.prototype可以显式的
+//      console.log(Fun1.prototype)
+//    console.log(Fun1.prototype.constructor)
+//      Fun1.prototype = new Fun2();
+//      console.log(Fun1.prototype)
+//    console.log(Fun1.prototype.constructor)
+//
+//
+// //     console.log(Fun1.prototype.constructor);
+// //     Fun1.prototype = new Fun2();
+// //    console.log(Fun1.prototype.constructor);
+// //     var person = new Fun2();
+// //     console.log(  person.name)
+// //     function Person() {
+// //         this.name="bob";
+// //     }
+// //     console.log(Person.prototype.__proto__);
+// //     var person1 = new Person();
+// //     console.log(person1.__proto__.__proto__)
+// //     var obj = new Object();
+// //     console.log(Object.prototype == obj.__proto__)
+// //     var arr=[1,2,3];
+// //     console.log(arr.__proto__)
+//
+//    Function.prototype.a = 'a';
+//    Object.prototype.b = 'b';
+//    function Person(){};
+//    var p = new Person();
+//    console.log('p.a: '+ p.a); // p.a: undefined
+//    // 实例对象p现在自身找 a 这个属性 发现没有 就去它自己的构造函数Person的原型上找（Person.prototype）发现也没有
+//    // 就继续往Person.prototype.__proto__上找，而Person.prototype.__proto__是Object.prototype，发现Object.prototype上也没有 ，至此原型链查找结束
+//    console.log('p.b: '+ p.b); // p.b: b
+
+  var p2 = new Object();
+   function Person(){
+
+   }
+   var p1 = new Person();
+   Person.prototype.a = 1;
+   Function.prototype.a = 2;
+   Object.prototype.a =3;
+   console.log(p2.a)//3
+   console.log(p1.a) //1
+   console.log(Person.a)//2
+   console.log(Person.name) //Person
+    console.log(Person.constructor)//Function
+    console.log(p1.constructor)//Person
+    console.log(p2.constructor)//Object
+
+
+
+
 
 
 </script>

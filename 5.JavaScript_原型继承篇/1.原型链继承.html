@@ -2,31 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>原型链继承</title>
 </head>
 <body>
 <script>
- function Person(){
-     this.name = "bob";
- }
+    /*
+    原型和实例的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针
 
- function Speices(){
-     this.home = "earth";
- }
- Person.prototype.sayName = function () {
-     console.log(this.name);
- };
+     */
+    // 原型链的继承的本质是：重写原型对象
+   // function SuperType(){
+   //     this.property = true;
+   // }
+   // SuperType.prototype.getSuperValue = function () {
+   //     return this.property;
+   // };
+   // function SubType() {
+   //     this.subproperty = false;
+   // }
+   // //继承SuperType
+   // SubType.prototype = new SuperType();
+   // SubType.prototype.getSubValue = function () {
+   //     return this.subproperty;
+   // };
+   // var instance = new SubType();
+   // console.log(instance.getSuperValue())
+   // console.log
 
- Speices.prototype.sayName = function () {
-     console.log(this.home);
- };
- Person.prototype = new Speices();
- var person1 = new Person();
- console.log(person1 instanceof Speices);
+   // 3.谨慎的定义方法：子类型有时候需要覆盖超类型中的某个方法，或者需要添加超类型中不存在的某个方法，
+   // 但是不管怎么样，给原型添加方法的代码一定要放在替换原型的语句之后。
+   function SuperType() {
+       this.property = 1;
+   }
+   SuperType.prototype.getSuperValue = function(){
+       return this.property;
+   };
+   function SubType() {
+       this.subproperty = 2;
+   }
+    //继承SuperType
+    SubType.prototype = new SuperType(); //正确的做法
 
- var str = "hello";
- console.log(str.slice(1,3))
-    
+   //添加新方法
+    SubType.prototype.getSubValue = function () {
+        return this.subproperty;
+    };
+    //重写超类型中的方法
+    SubType.prototype.getSuperValue = function () {
+        return 3;
+    };
+    //继承SuperType
+    // SubType.prototype = new SuperType();//错误的做法
+
+    var instance  = new SubType();
+    console.log(instance.getSuperValue())
 </script>
 
 </body>
