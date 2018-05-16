@@ -89,7 +89,7 @@
 //    // 就继续往Person.prototype.__proto__上找，而Person.prototype.__proto__是Object.prototype，发现Object.prototype上也没有 ，至此原型链查找结束
 //    console.log('p.b: '+ p.b); // p.b: b
 
-  var p2 = new Object();
+   var p2 = new Object();
    function Person(){
 
    }
@@ -97,13 +97,13 @@
    Person.prototype.a = 1;
    Function.prototype.a = 2;
    Object.prototype.a =3;
-   console.log(p2.a)//3
-   console.log(p1.a) //1
-   console.log(Person.a)//2
-   console.log(Person.name) //Person
-    console.log(Person.constructor)//Function
-    console.log(p1.constructor)//Person
-    console.log(p2.constructor)//Object
+   console.log(p2.a)//
+   console.log(p1.a) //
+   console.log(Person.a)//
+   console.log(Person.name) //
+   console.log(Person.constructor)//
+   console.log(p1.constructor)//
+   console.log(p2.constructor)//
 
 
 

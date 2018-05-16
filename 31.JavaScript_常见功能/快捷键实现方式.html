@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app{
+
+            border: none;
+        }
+    </style>
+</head>
+
+<body >
+
+<input type="text"  accesskey="1" id="app" value="alt+1快捷方式新增" readonly>
+<script>
+    if(!!window.ActiveXObject || "ActiveXObject" in window){
+        document.getElementById('app').onfocus= function () {
+            alert('this is ie 接下里向服务器附送请求');
+            //回调成功后执行下面的代码
+            document.getElementById('app').blur();
+        }
+    }else{
+        document.getElementById('app').onfocus= function () {
+            alert('this is not  ie 接下里向服务器附送请求');
+            //回调成功后执行下面的代码
+            document.getElementById('app').blur();
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

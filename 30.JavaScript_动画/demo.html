@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="d1">
+
+</div>
+
+
+<script>
+    // var dis =1;
+    // var div = document.getElementById('d1');
+    // function animation(){
+    //     requestAnimationFrame(function(){
+    //         div.style.left = ++dis + 'px';
+    //         if(dis<50) animation();
+    //     })
+    // }
+    // animation();
+
+    var a  = 'global';
+    function foo() {
+        console.log(this.a)
+    }
+    with({a:'with'}){
+        foo()
+    }
+</script>
+
+</body>
+</html>

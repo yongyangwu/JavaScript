@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<iframe src="index2.html" frameborder="0" id="index2"></iframe>
+<script>
+    document.getElementById("index2").onload = function(){
+        document.getElementById('index2').contentWindow.document.getElementById('app').innerHTML='hello';
+    };
+
+</script>
+
+</body>
+</html>
