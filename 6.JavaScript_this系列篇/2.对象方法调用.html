@@ -23,15 +23,15 @@
    // };
    // obj.foo();
   // 变形一下
-  //   var x = 2;
-  //   function foo() {
-  //       console.log(this.x)
-  //   }
-  //   var obj={
-  //       x:10,
-  //       foo:foo
-  //   };
-  //   obj.foo();
+    var x = 2;
+    function foo() {
+        console.log(this.x)
+    }
+    var obj={
+        x:10,
+        foo:foo
+    };
+    obj.foo();
 
     //2.若是在对象方法中定义函数 那么情况就不同了
 //    var x = 2;

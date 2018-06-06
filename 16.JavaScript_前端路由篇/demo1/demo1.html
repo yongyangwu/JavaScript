@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a href="#/">turn white</a></li>
+    <li><a href="#/blue">turn blue</a></li>
+    <li><a href="#/green">turn green</a></li>
+</ul>
+
+<script>
+    var content = document.querySelector('body');
+    // change Page anything
+    function changeBgColor(color) {
+        content.style.backgroundColor = color;
+    }
+    function Router() {
+        this.routes = {};
+        this.currentUrl = '';
+    }
+    Router.prototype.route = function(path, callback) {
+        this.routes[path] = callback || function(){};
+    };
+    Router.prototype.refresh = function() {
+        this.currentUrl = location.hash.slice(1) || '/';
+        this.routes[this.currentUrl]();
+    };
+    Router.prototype.init = function() {
+        window.addEventListener('load', this.refresh.bind(this), false);
+        window.addEventListener('hashchange', this.refresh.bind(this), false);
+    };
+    var router = new Router();
+    router.init();
+    router.route('/', function() {
+        changeBgColor('pink');
+    });
+    router.route('/blue', function() {
+        changeBgColor('blue');
+    });
+    router.route('/green', function() {
+        changeBgColor('green');
+    });
+</script>
+
+</body>
+</html>
