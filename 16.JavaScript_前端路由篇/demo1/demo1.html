@@ -18,22 +18,23 @@
         content.style.backgroundColor = color;
     }
     function Router() {
-        this.routes = {};
-        this.currentUrl = '';
+        this.routes = {};//这个对象保存的是hash地址以及对应hash地址需要执行的函数类似这种结构{‘/’：function(){} }
+        this.currenHash = '';//currenHash当前hash地址的值
     }
     Router.prototype.route = function(path, callback) {
         this.routes[path] = callback || function(){};
     };
     Router.prototype.refresh = function() {
-        this.currentUrl = location.hash.slice(1) || '/';
-        this.routes[this.currentUrl]();
+        this.currenHash = location.hash.slice(1) || '/';
+        this.routes[this.currenHash]();
     };
     Router.prototype.init = function() {
         window.addEventListener('load', this.refresh.bind(this), false);
         window.addEventListener('hashchange', this.refresh.bind(this), false);
     };
-    var router = new Router();
-    router.init();
+    var router = new Router();//生成一个实例化对象router
+    router.init();//调用实例化router上的原型方法init()从而实现对load和hashchange事件的监听
+    //执行一下函数从而给实例化对象router.routes初始化数据
     router.route('/', function() {
         changeBgColor('pink');
     });
