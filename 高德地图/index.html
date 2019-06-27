@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.13&key=76ba25ab20604647577696d653a1ba50"></script>-->
+    <!--<script type="text/javascript" src="amap_offline.js"></script>-->
+    <!--<script type="text/javascript" src="modules.js"></script>-->
+    <!--<script type="text/javascript" src="style.js"></script>-->
+    <style>
+        #container {width:1200px; height: 600px; }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+
+
+<script>
+    // // var map = new AMap.Map('container');
+    // var map = new AMap.Map('container', {
+    //     zoom:11,//级别
+    //     center: [116.397428, 39.90923],//中心点坐标
+    //     viewMode:'3D'//使用3D视图
+    // });
+
+  var data  = [{id: "1", parent_group_id: "0", name: "测试-南京公安", code: "2210000", address: "江苏南京"},
+      {id: "3", parent_group_id: "1", name: "测试-南京公安-1支队", code: "2210000", address: "江苏南京"},
+      {id: "4", parent_group_id: "1", name: "测试-南京公安-2支队", code: "2210000", address: "江苏南京"}];
+  //   var result=[];
+  //   var children=[]
+
+    function buildTree(list){
+       var result=[];
+        result.push({address:list[0].address,children:[{name:list[0].name}]});
+       for(var i=0;i<list.length;i++){
+               for(var j=0;j<result.length;j++){
+                   if(result[j]==list[i]){
+                       result[j].children.push({name:list[i].name})
+                   }else{
+                       result.push({address:list[i].address,children:[{name:list[i].name}]});
+                   }
+               }
+       }
+       return result
+    }
+    console.log(buildTree(data))
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var value = 1;
+
+    var obj = {
+        value: 4,
+        fn: (function() {
+            console.log(value);
+            this.value *= 3;
+            value *=2;
+            console.log(value);
+            // console.log(value);
+            // console.log(this.value);
+            // console.log(obj.value);
+            var value = 2;
+            return function(){
+                console.log(this.value)
+                this.value *=2;
+                value *=3;
+                console.log(value)
+            }
+        })()
+    };
+    fn = obj.fn;
+    fn();
+    console.log(value)
+    console.log(obj.value)
+
+
+
+
+
+</script>
+
+</body>
+</html>

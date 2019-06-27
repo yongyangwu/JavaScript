@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+//          var arr = [{
+//       key: '01',
+//       value: '乐乐'
+//    }, {
+//       key: '02',
+//       value: '博博'
+//    }, {
+//       key: '03',
+//       value: '淘淘'
+//    },{
+//       key: '04',
+//       value: '哈哈'
+//    },{
+//       key: '01',
+//       value: '乐乐'
+//    }];
+
+
+//    //  方法1：利用对象访问属性的方法，判断对象中是否存在key
+//    var result = [];
+//    var obj = {};
+//    for(var i =0; i<arr.length; i++){
+//       if(!obj[arr[i].key]){
+//          result.push(arr[i]);
+//          obj[arr[i].key] = true;
+//       }
+//    }
+//    console.log(result);
+   var oldArr =[{lng:1,lat:1,time:111},{lng:2,lat:1,time:222},{lng:1,lat:1,time:333}]
+
+
+   var allArr = [];//新数组
+   for(var i=0;i<oldArr.length;i++){
+　　var flag = true;
+　　for(var j=0;j<allArr.length;j++){
+　　　　if(oldArr[i].lng == allArr[j].lng && oldArr[i].lat == allArr[j].lat ){
+　　　　　　flag = false;
+　　　　};
+　　}; 
+　　if(flag){
+　　　　allArr.push(oldArr[i]);
+　　};
+   };
+   console.log(allArr)
+
+
+
+
+
+
+
+
+    // var arr = [{lng:1,lat:1,time:111},{lng:2,lat:1,time:222},{lng:1,lat:1,time:333}]
+    // var result = [];
+    // var obj = {};
+    // for(var i =0; i<arr.length; i++){
+    //   if(!obj[arr[i].lngLat]){
+    //      result.push(arr[i]);
+    //      obj[arr[i].lng] = true;
+    //   }
+    // }
+    //     var k =0
+    //     var originData = [{lng:1,lat:1,time:111},{lng:2,lat:1,time:222},{lng:1,lat:1,time:333}]
+    //     var drawData=[originData[0]];
+    //     for(var i =1;i<originData.length;i++){
+    //         var len = drawData.length
+    //         console.log('len:',len)
+    //         console.log(drawData)
+    //         for(var j=0; j<len;j++){
+    //             if(originData[i].lng==drawData[j].lng && originData[i].lat==drawData[j].lat){
+    //             }else{
+    //                 console.log('i:',i);
+    //                 console.log(originData[i])
+    //             drawData.push(originData[i])
+    //             }
+    //         }
+    //     }
+    //     console.log(drawData)
+    </script>
+    
+</body>
+</html>

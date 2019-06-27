@@ -7,27 +7,34 @@
 <body>
 
 <script>
-    var arr = [1,2,1];
+    // var arr = [1,2,1];
+    // function unique(array){
+    //     var res = [];
+    //     for(var i=0; i<array.length;i++ ){
+    //        for(var j =0; j<res.length;j++){
+    //             if(array[i]===res[j]){
+    //                 break;
+    //             }
+    //         }
+    //         if(j === res.length){
+    //            res.push(array[i]);
+    //         }
+    //      }
+    //      return res;
+    // }
+    // console.log(unique(arr))
 
-    function unique(array){
-        var res = [];
-        for(var i=0; i<array.length;i++ ){
 
-
-           for(var j =0; j<res.length;j++){
-
-                if(array[i]===res[j]){
-                    break;
-                }
-            }
-            if(j === res.length){
-               res.push(array[i]);
-            }
-         }
-
-         return res;
+    var arr2 = [1,2,5,1,4,2];
+    var arr3=[];
+    for(var i =0; i<arr2.length;i++){
+        if(arr3.indexOf(arr2[i])<0){
+          arr3.push(arr2[i]);
+        }
     }
-    console.log(unique(arr))
+    arr2 = arr3;
+    console.log(arr2)
+
 
 </script>
 

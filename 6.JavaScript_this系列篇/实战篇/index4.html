@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var sex = "male";
+    var saySex = {
+        sex:"female",
+        saySex:function(){
+            function getSex(){
+                console.log("this.sex="+this.sex);
+            }
+            getSex();
+        }
+    };
+    saySex.saySex(); //this.sex = ?
+    var ccc = saySex.saySex;
+    ccc();//this.sex = ?
+
+
+
+</script>
+
+</body>
+</html>

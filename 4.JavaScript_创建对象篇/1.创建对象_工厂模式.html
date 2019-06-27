@@ -12,7 +12,7 @@
         obj.name = name;
         obj.age = age;
         obj.sayName= function () {
-            alert(this.name);
+               alert(this.name);
         };
         return obj;
     }
@@ -21,6 +21,19 @@
 
     //comments:
     //工厂模式虽然解决了创建多个相似对象的问题但却没有解决对象识别的问题（即怎样知道一个对象的类型）
+</script>
+
+
+<script>
+    function createPerson(name,age) {
+        var obj = new Object();
+        obj.name = 'bob';
+        obj.age=22;
+        obj.getName = function () {
+            return this.name
+        }
+        return obj
+    }
 </script>
 
 </body>

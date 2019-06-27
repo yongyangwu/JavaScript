@@ -6,7 +6,6 @@
 </head>
 <body>
 <div>
-
 </div>
 
 <script>
@@ -18,7 +17,7 @@
         链的终点是Object.prototype对象，因此Object.prototype没有原型，但我们构建一个对象这个对象的默认原型就是Object.prototype
         obj1.__proto__ = obj2;  obj2.__proto__ = obj3;  .....==>Object.prototype ==>null;
     */
-    var a = { };
+    var a = {};
     console.log(Object.prototype ===a.__proto__);
     /*
     a.__proto__  = b;其实就实现了一个继承了
@@ -38,6 +37,7 @@
       1.创建了一个新对象；
       2.将这个新对象的[[prototype]]连接到调用函数的prototype上
       3.将函数内的this绑定到这个新对象上
+      4.返回新对象
      */
 
     //只有函数有prototype属性

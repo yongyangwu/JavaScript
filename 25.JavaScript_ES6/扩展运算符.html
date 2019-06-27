@@ -7,7 +7,17 @@
 <body>
 
 <script>
-    console.log(...[1,2,3],...[5,6,7]);
+    var obj = {
+        name:'bob',
+        age:22,
+        job:'teacher'
+    };
+ var obj2 = {
+     en:{
+    ...obj
+     }
+ }
+    console.log(obj2)
 </script>
 
 </body>

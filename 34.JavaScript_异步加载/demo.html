@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        //await 和 async  注意await 关键字只能放到async 函数里面
+        var img = new Image();
+        img.src = './img/bg5.png';
+        setTimeout(() => {
+            img.onload=function(){
+                    console.log('加载图片成功')
+                    // resolve(true)
+                } 
+        }, 9);
+        // var img2 = new Image();
+        // img2.src = './img/map_icon_2.png';
+        // var img3 = new Image();
+        // img3.src = './img/map_icon_3.png';
+        // var img4 = new Image();
+        // img4.src = './img/bg5.png';
+        // function loadImg(arg) {
+        //     return new Promise((resolve, reject) => {
+        //         // arg.src="./img/map_icon_1.png"
+        //         arg.onload=function(){
+        //             console.log(arg,'加载图片成功')
+        //             resolve(true)
+        //         }
+        //         arg.onerror=function(){
+        //             console.log("图片加载失败")
+        //             reject(false)
+        //         } 
+        //     })
+        // }
+        // async function testResult() {
+        //     console.log("开始加载图片")
+        //     let first = await loadImg(img);
+        //     console.log("第1张图片加载完成")
+        //     console.log(first)
+        //     let second = await loadImg(img2);
+        //     console.log("第2张图片加载完成")
+        //     console.log(second)
+        //     let third = await loadImg(img3);
+        //     console.log("第3张图片加载完成")
+        //     console.log(third)
+        //     let forth = await loadImg(img4);
+        //     console.log("第4张图片加载完成")
+        //     console.log(forth)
+        //     console.log(first, second , third ,forth)
+        //     if(first && second && third && forth){
+        //         console.log("开始绘制")
+        //     }
+        // }
+        // testResult() 
+    </script>  
+</body>
+</html>

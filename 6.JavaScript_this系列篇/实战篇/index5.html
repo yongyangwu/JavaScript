@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var a = {
+        name:"zhang",
+        sayName:function(){
+            console.log("this.name="+this.name);
+        }
+    };
+    var name = "ling";
+    function sayName(){
+        var sss = a.sayName;
+        sss(); //this.name = ?
+        a.sayName(); //this.name = ?
+        (a.sayName)(); //this.name = ?
+        (b = a.sayName)();//this.name = ?
+    }
+    sayName();
+</script>
+
+</body>
+</html>

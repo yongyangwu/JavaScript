@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=GGVvWfGhvx5GCi9Hkd0nrjs5GzdqB6cG"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
+    <script src="http://mapv.baidu.com/build/mapv.min.js"></script>
+    <title>地图展示</title>
+</head>
+<body>
+<button id="run">开始</button>
+<div id="allmap" style="width: 1000px;height: 600px"></div>
+</body>
+</html>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    map.centerAndZoom(new BMap.Point(116.3964,39.9093), 14);
+    map.enableScrollWheelZoom();
+   
+    var data = [];
+       var coordinatesList=[[116.0964,39.8093], [116.5964,39.7093]];
+    
+      data.push({
+                geometry: {
+                    type: 'Point',
+                    coordinates: [116.0964,39.8093]
+                },
+                count: 1
+            });
+
+// for(var i =0; i<coordinatesList.length-1;i++){
+//     data.push({
+//                 geometry: {
+//                     type: 'LineString',
+//                     coordinates: [coordinatesList[i],coordinatesList[i+1]]
+//                 },
+//                 count: 1
+//             });
+// }
+        // var dataSet = new mapv.DataSet(data);
+        // var options = {
+        //     strokeStyle: 'rgba(255, 250, 50, 0.3)',
+        //     shadowColor: 'rgba(55, 50, 250, 0.5)',
+        //     shadowBlur: 10,
+        //     lineWidth: 1,
+        //     lineDash: [15],
+        //     draw: 'simple'
+        // }
+        // var mapvLayer = new mapv.baiduMapLayer(map, dataSet, options);
+
+
+        var dataSet = new mapv.DataSet(data);
+
+var options = {
+    fillStyle: 'rgba(255, 50, 50, 0.6)',
+    shadowColor: 'rgba(255, 50, 50, 1)',
+    shadowBlur: 30,
+    globalCompositeOperation: 'lighter',
+    methods: {
+        click: function (item) {
+            console.log(item);
+        },
+        mousemove: function(item) { // 鼠标移动事件，对应鼠标经过的元素对象值
+            console.log(item);
+        }
+    },
+    size: 6,
+    draw: 'simple'
+}
+
+var mapvLayer = new mapv.baiduMapLayer(map, dataSet, options);
+</script>
