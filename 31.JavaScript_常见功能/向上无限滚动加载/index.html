@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container" style="width: 600px;height:300px;border: 1px solid red;font-size: 20px;overflow: auto">
+        <div>
+                <p>wwww</p>
+                <p>wwww</p>
+                <p>wwww</p>
+        </div>
+        <!-- <div  style='height: 200px'></div> -->
+    </div>
+  <script>
+    //   console.log(document.getElementById('container').clientHeight)
+    //   console.log(document.getElementById('container').scrollHeight)
+    //   console.log(document.getElementById('container').scrollTop =10)
+    document.getElementById('container').scrollTop =200
+      var flag = true
+      document.getElementById('container').onscroll = function () {
+            if(document.getElementById('container').scrollTop ==0){
+                if(flag){
+                    flag =false
+                    setTimeout(function(){
+                    console.log(1)
+                    document.getElementById('container').scrollTop =20
+                    flag =true;
+
+                },1000)
+
+                }
+                
+            }
+        }
+
+  </script>
+    
+</body>
+</html>

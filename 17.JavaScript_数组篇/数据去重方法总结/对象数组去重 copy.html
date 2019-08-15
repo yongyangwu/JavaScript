@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+
+<body>
+   <script>
+      var points = [
+         {lng: 113, lat: 30,time:'12:00:09'},
+         {lng: 115, lat: 30,time:'12:00:00'},
+         {lng: 117, lat: 31,time:'12:00:01'},
+         {lng: 116, lat: 32,time:'12:00:03'},
+         {lng: 115, lat: 30,time:'12:00:04'},  
+         {lng: 117, lat: 31,time:'12:00:04'}
+      ];
+     var targetPoints=[];
+      for(var i =0; i<points.length;i++){
+         if(i==0){
+            targetPoints.push({lng:points[i].lng,lat:points[i].lat,time:[points[i].time]})
+         }else{
+              var len = targetPoints.length;
+              var flag =true;
+              for(var k=0;k<len;k++){
+                 if(targetPoints[k].lng == points[i].lng && targetPoints[k].lat == points[i].lat){
+                    targetPoints[k].time.push(points[i].time)
+                    flag=false;
+                 }
+              }
+              if(flag){
+               targetPoints.push({lng:points[i].lng,lat:points[i].lat,time:[points[i].time]})
+              }
+         }
+      }
+      console.log(targetPoints)
+     
+   </script>
+
+</body>
+
+</html>

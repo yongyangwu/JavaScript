@@ -9,19 +9,20 @@
 
 </div>
 <script>
-function Foo() {
-    this.x = 10;
-    console.log(this);
-}
-var foo = new Foo();
-console.log(foo.x);
+// function Foo() {
+//     this.x = 10;
+//     console.log(this);
+// }
+// var foo = new Foo();
+// console.log(foo.x);
 //上述代码中，如果函数作为构造函数使用，那么其中的this就代表它即将new出来的对象
-//但是如果直接调用Foo函数，而不是new Foo(),那么久变成情况1了 这时候Foo()就变成普通函数了
+//但是如果直接调用Foo函数，而不是new Foo(),那么就变成情况1了 这时候Foo()就变成普通函数了
 function Foo() {
     this.x = 10;
     console.log(this)
 }
 var foo = Foo();
+console.log(foo.x)
 </script>
 </body>
 </html>

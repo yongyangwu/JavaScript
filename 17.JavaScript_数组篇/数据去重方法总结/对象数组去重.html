@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+   <meta charset="UTF-8">
+   <title>Title</title>
 </head>
+
 <body>
 
-<script>
-    var arr = [{name:'bob'},{name:'tom'},{name:'bob'}];
+   <script>
+      var points = [
+         { lng: 1, lat: 1, time: '1' },
+         { lng: 2, lat: 2, time: '2' },
+         { lng: 3, lat: 3, time: '3' },
+         { lng: 1, lat: 1, time: '4' },
+         { lng: 2, lat: 4, time: '5' },
+         { lng: 2, lat: 2, time: '6' },
+      ]
+    var arr =[1,2,3,4]
     var hash = {};
-    arr = arr.reduce(function(prev, next) {
-        console.log(prev,next);
+    result = arr.reduce(function(prev, next) {
         hash[next.name] ? '' : hash[next.name] = true && prev.push(next);
-        return prev
+        return prev +next;
     }, []);
-    // console.log(arr);
+    console.log(result);
+    
 
 
-    // var arr =[1,2,3,4]
-    // var hash = {};
-    // result = arr.reduce(function(prev, next) {
-    //     console.log(prev,next);
-    //     // hash[next.name] ? '' : hash[next.name] = true && prev.push(next);
-    //     return prev +next;
-    // }, []);
-    // console.log(result);
 
-</script>
+ 
+
+   </script>
 
 </body>
+
 </html>
