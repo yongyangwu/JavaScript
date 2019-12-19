@@ -5,48 +5,70 @@
     <title>Title</title>
 </head>
 <body>
-<div>
-    console.log(global); // 
-    var global = 'global';
-    console.log(global); //
-
-
-
-
-
-
-    function fn () {
-    　　console.log(a); // undefined
-    　　var a = 'aaa';
-    　　console.log(a); // aaa
-    }
-    fn();
-
-    var global; // 变量提升，全局作用域范围内，此时只是声明，并没有赋值
-    console.log(global); // undefined
-    global = 'global'; // 此时才赋值
-    console.log(global); // 打印出global
-
-    function fn () {
-    　　var a; // 变量提升，函数作用域范围内
-    　　console.log(a);
-    　　a = 'aaa';
-    　　console.log(a);
-    }
-    fn();
-</div>
 <script>
-    console.log(global); // 
-    var global = '111';
-    console.log(global); //
+    //1
+    var a;
+    console.log(a)
+    // a =1;
+
+    
+    //2
+    // var global
+    // console.log(global)
+
+    //3
+    // console.log(global); 
+    // var global = '111';
+    // console.log(global); 
+
+    //4
+    // var global = 'bbb'
+    // function fn () {
+    // 　　console.log(global);
+    // 　　var global = 'aaa';
+    // 　　console.log(global); 
+    // }
+    // fn();
+    // var global = 'bbb'
+    // function fn () {
+
+    // 　　console.log(global);
+    // 　　 var global = 'aaa';
+    // 　　console.log(global); 
+    // }
+    // fn();
+    // console.log(global)
+
+
+    // console.log(global)
+
+   
 
 
 
-    // console.log(global); // undefined
-    //  var global = 'global';
-    //  var global;
-    //  console.log(global);
-    //  global =3
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
 </script>
 
 </body>

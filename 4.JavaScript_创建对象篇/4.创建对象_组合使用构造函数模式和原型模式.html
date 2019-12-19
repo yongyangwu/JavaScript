@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 
-<script>
-    // 构造函数模式用于定义实例属性，而原型用于定义方法和共享的属性：每个实例都有自己的一份实例属性的副本，但同时又共享这对 方法的引用 最大限度节省内存
-    function Person() {
+    <script>
+        // 构造函数模式用于定义实例属性，而原型用于定义方法和共享的属性：每个实例都有自己的一份实例属性的副本，但同时又共享这对 方法的引用 最大限度节省内存
+        function Person(name, age,family) {
+            this.name = name;
+            this.age = age;
 
-    }
-    Person.prototype.name = "bob";
-    Person.prototype.age = 26;
-    Person.prototype.sayName = function () {
-        alert(this.name);
-    };
-    var person1 = new Person();
-    person1.sayName(); //"bob
-    var person2 = new Person();
-    person2.sayName();
-    console.log(Object.keys(person1))
-</script>
+        }
+        Person.prototype.family = ['father', 'mum', 'sister'];
+        Person.prototype.sayName = function () {
+            alert(this.name);
+        };
+        var person1 = new Person('tom', 20);
+        person1.sayName();
+        person1.family.push('brother')
+        var person2 = new Person('jim', 22);
+        person2.sayName();
+        console.log(person2.family)
+
+    </script>
 
 </body>
+
 </html>

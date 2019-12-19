@@ -8,21 +8,40 @@
 </head>
 <body>
     <div id="container" style="width: 600px;height:300px;border: 1px solid red;font-size: 20px;overflow: auto">
-        <div>
+        <div id="demo">
+                <p>wwww</p>
+                <p>wwww</p>
+                <p>wwww</p>
+                <p>wwww</p>
+                <p>wwww</p>
+                <p>wwww</p>
                 <p>wwww</p>
                 <p>wwww</p>
                 <p>wwww</p>
         </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
         <!-- <div  style='height: 200px'></div> -->
     </div>
+    <button id="dianji">点击</button>
   <script>
+      document.getElementById('dianji').onclick=function(){
+        document.getElementById('demo').innerHTML="2222222"
+
+      }
     //   console.log(document.getElementById('container').clientHeight)
     //   console.log(document.getElementById('container').scrollHeight)
     //   console.log(document.getElementById('container').scrollTop =10)
     document.getElementById('container').scrollTop =200
       var flag = true
       document.getElementById('container').onscroll = function () {
+         
             if(document.getElementById('container').scrollTop ==0){
+                alert(2)
                 if(flag){
                     flag =false
                     setTimeout(function(){

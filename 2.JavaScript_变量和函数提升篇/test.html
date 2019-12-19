@@ -11,17 +11,61 @@
 <body>
 
     <script>
-        //   console.log(a);
-        //   var a =1;
-        //   console.log(a)
-        // console.log(a)
-        // let a = 1;
-        // console.log(a)
+        var a;
+        console.log(a)
 
-        for(let i =0;i<4;i++){
-            let i = 2;
-            console.log(i)
+        function a() {
+            console.log(11)
         }
+        console.log(a)
+        a = [1, 2, 3];
+
+        var arr = [
+            {
+                "mid": 1,
+                "name": "黎明",
+                "nameId": 1
+            },
+            {
+                "mid": 1,
+                "name": "元胡",
+                "nameId": 2
+            },
+            {
+                "mid": 2,
+                "name": "周佛的",
+                "nameId": 3
+            },
+            {
+                "mid": 2,
+                "name": "烦烦烦",
+                "nameId": 4
+            }
+        ];
+        var result = []
+        for (var i = 0; i < arr.length; i++) {
+            if (i == 0) {
+                result.push({ mid: arr[i].mid, obj: [{ name: arr[i].name, nameId: arr[i].nameId }] })
+            } else {
+                var len = result.length;
+                var flag = true;
+                for (var k = 0; k < len; k++) {
+                    if (result[k].mid == arr[i].mid) {
+                        result[k].obj.push({name:arr[i].name,nameId: arr[i].nameId})
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    result.push({mid: arr[i].mid, obj: [{ name: arr[i].name, nameId: arr[i].nameId }]})
+                }
+            }
+        }
+        console.log(result)
+
+ 
+
+
+
 
     </script>
 

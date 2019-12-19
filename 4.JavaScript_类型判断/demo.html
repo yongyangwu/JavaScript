@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+     
+        // console.log(typeof "");
+        // console.log(typeof 1);
+        // console.log(typeof true);
+        // console.log(typeof null); 
+        // console.log(typeof undefined);
+        // console.log(typeof []);//Object
+        // console.log(typeof function () { });//function
+        // console.log(typeof {});// Object
+
+        // console.log("1" instanceof String);
+        // console.log(1 instanceof Number);
+        // console.log(true instanceof Boolean);
+        // //            console.log(null instanceof Null);
+        // //            console.log(undefined instanceof Undefined);
+        // console.log([] instanceof Array);
+        // console.log(function () { } instanceof Function);
+        
+        // console.log({} instanceof Object);
+
+
+
+
+        // //3.constructor
+        // console.log(("1").constructor === String);
+        // console.log((1).constructor === Number);
+        // console.log((true).constructor === Boolean);
+        // //console.log((null).constructor === Null);
+        // //console.log((undefined).constructor === Undefined);
+        // console.log(([]).constructor === Array);
+        // console.log((function () { }).constructor === Function);
+        // console.log(({}).constructor === Object)
+
+
+
+
+
+
+
+        //弊端
+        // function Fn() { };
+        // Fn.prototype = new Array();
+        // var f = new Fn();
+
+        // console.log(Object.prototype.toString.call(f));
+        // console.log(f.constructor === Array);
+
+        //4.Object.prototype.toString().call()
+        // console.log(Object.prototype.toString.call("aaa"));
+        // console.log(Object.prototype.toString.call(1));
+        // console.log(Object.prototype.toString.call(true));
+        // console.log(Object.prototype.toString.call(null));
+        // console.log(Object.prototype.toString.call(undefined));
+        // console.log(Object.prototype.toString.call([]));
+        // console.log(Object.prototype.toString.call(function () { }));
+        // console.log(Object.prototype.toString.call({}));
+
+        function checkType(obj){
+            if(typeof obj == 'object' || typeof obj == 'function'){
+                var type ={ 
+                '[object Number]':'number',
+                '[object Boolean]':'boolean',
+                '[object Function]':'function',
+                '[object String]':'string',
+                '[object Array]':'array',
+                '[object Date]':'date',
+                '[object Object]':'object',    
+                '[object Null]':'null'      
+               };
+               var key = Object.prototype.toString.call(obj);
+                return type[key];
+
+
+            }else{
+                return typeof obj
+
+            }
+
+
+            // if(obj == null){
+            //     return 'null';
+            // }
+            // var type ={ 
+            //     '[object Number]':'number',
+            //     '[object Boolean]':'boolean',
+            //     '[object Function]':'function',
+            //     '[object String]':'string',
+            //     '[object Array]':'array',
+            //     '[object Date]':'date',
+            //     '[object Object]':'object'    
+            // }    
+                
+            // if(typeof obj == 'object'){
+            //     var key = Object.prototype.toString.call(obj);
+            //     return type[key];
+            // }else{
+            //     return typeof obj;
+            // }
+        }
+        var a = null;
+        console.log(checkType(a))
+        
+        
+
+
+    </script>
+
+</body>
+
+</html>

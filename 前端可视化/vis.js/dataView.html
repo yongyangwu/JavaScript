@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+
+        }
+
+        .mynetwork {
+            height: 600px;
+            /* border: 1px solid lightgray; */
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="get()">获取位置</button>
+    <button onclick="add()">添加</button>
+    <button onclick="select()">画框选择</button>
+    <div style="position: relative;" id="container">
+        <div id="mynetwork" class="mynetwork"></div>
+        <!-- <canvas id="canvas" style="cursor:crosshair;width: 100%;height:600px;position:absolute;;left:0;top:0;">
+        </canvas> -->
+    </div>
+
+
+    <script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+            { id: 1, text: 'item 1', shape: 'circularImage', image: './people.png', physics: false },
+            { id: 2, text: 'item 2', shape: 'circularImage', image: './people.png', physics: false },
+            { id: 3, text: 'item 3', shape: 'circularImage', image: './people.png', physics: false },
+        ]);
+        // create an array with edges
+        var edges = new vis.DataSet([
+            { from: 1, to: 2 },
+            { from: 1, to: 3 },
+        ]);
+        // create a network
+
+
+        // provide the data in the vis format
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+        var options = {
+            nodes: {
+                borderWidth: 4,
+                size: 30,
+                color: {
+                    border: '#222222',
+                    background: '#666666'
+                },
+                font: { color: '#eeeeee' }
+            },
+            interaction: {
+                multiselect: true,
+                dragView: false,
+            }
+
+        };
+        var container = document.getElementById('mynetwork')
+        var network = new vis.Network(container, data, options);
+        var delete_nodes_list = [];
+        network.on('stabilized', item => {
+            // var arrPosition = network.getPositions();
+            // console.log('arrPosition', arrPosition)
+        })
+        network.on('selectNode', item => {
+            console.log('selectNode', item)
+            delete_nodes_list = item.nodes;
+        })
+        function get() {
+            var arrPosition = network.getPositions();
+            console.log('arrPosition', arrPosition)
+        }
+        function add() {
+            return
+            data.nodes.add({ id: 4, text: 'item 4' })
+            data.edges.add({ from: 1, to: 4 })
+        }
+        document.onkeydown = function (e) {
+
+            if (e.keyCode == 46) {
+                console.log('e', e.keyCode)
+                const delete_nodes = data.nodes.get([1]);
+                console.log('delete_nodes', delete_nodes)
+                data.nodes.remove(delete_nodes_list)
+            }
+        }
+        function select() {
+
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            //Variables
+            var last_mousex = last_mousey = 0;
+            var mousedown = false;
+            //Mousedown
+            canvas.onmousedown = function (e) {
+                console.log('onmousedown', e)
+                last_mousex = e.offsetX;
+                last_mousey = e.offsetY;
+                mousedown = true;
+            }
+            canvas.onmouseup = function (e) {
+                mousedown = false;
+            }
+            canvas.onmousemove = function (e) {
+                if (mousedown) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
+                    ctx.beginPath();
+                    var width = e.offsetX - last_mousex;
+                    var height = e.offsetY - last_mousey;
+                    ctx.rect(last_mousex, last_mousey, width, height);
+                    ctx.stroke();
+                }
+            }
+
+        }
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        //Variables
+        var canvasx = canvas.offsetLeft;
+        var canvasy = canvas.offsetTop;
+        console.log('canvasx', canvasx)
+        console.log('canvasy', canvasy)
+        console.log(canvas.offsetLeft)
+        var last_mousex = last_mousey = 0;
+        var mousex = mousey = 0;
+        var mousedown = false;
+        //Mousedown
+        canvas.onmousedown = function (e) {
+            last_mousex = parseInt(e.clientX - canvasx);
+            last_mousey = parseInt(e.clientY - canvasy);
+            mousedown = true;
+        }
+        canvas.onmouseup = function (e) {
+            mousedown = false;
+        }
+        canvas.onmousemove = function (e) {
+            console.log(e)
+            mousex = parseInt(e.clientX - canvasx);
+            mousey = parseInt(e.clientY - canvasy);
+            if (mousedown) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
+                ctx.beginPath();
+                var width = mousex - last_mousex;
+                var height = mousey - last_mousey;
+                ctx.rect(last_mousex, last_mousey, width, height);
+
+                ctx.stroke();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

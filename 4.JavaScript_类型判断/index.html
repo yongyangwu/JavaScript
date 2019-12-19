@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //js检测变量类型有4种方法
+        /*
+          1.typeof
+    
+          2.instanceof
+    
+          3.constructor
+    
+          4.Object.prototype.toString.call()
+         */
+
+        //1.typeof 检测的结果有6中情况 string boolean number undefined object function
+        console.log(typeof "");
+        console.log(typeof 1);
+        console.log(typeof true);
+        console.log(typeof null);
+        console.log(typeof undefined);
+        console.log(typeof []);
+        console.log(typeof function () { });
+        console.log(typeof {});
+
+        //2.instanceof 的意思是用于判断变量是否是某一个对象的实例 结果就是true或者false
+        console.log("1" instanceof String);
+        console.log(1 instanceof Number);
+        console.log(true instanceof Boolean);
+        //            console.log(null instanceof Null);
+        //            console.log(undefined instanceof Undefined);
+        console.log([] instanceof Array);
+        console.log(function () { } instanceof Function);
+        console.log({} instanceof Object);
+
+        //3.constructor
+        console.log(("1").constructor === String);
+        console.log((1).constructor === Number);
+        console.log((true).constructor === Boolean);
+        //console.log((null).constructor === Null);
+        //console.log((undefined).constructor === Undefined);
+        console.log(([]).constructor === Array);
+        console.log((function () { }).constructor === Function);
+        console.log(({}).constructor === Object)
+        //弊端
+        function Fn() { };
+        Fn.prototype = new Array();
+        var f = new Fn();
+        console.log(f.constructor === Fn);
+        console.log(f.constructor === Array);
+
+        //4.Object.prototype.toString().call()
+        console.log(Object.prototype.toString.call("aaa"));
+        console.log(Object.prototype.toString.call(1));
+        console.log(Object.prototype.toString.call(true));
+        console.log(Object.prototype.toString.call(null));
+        console.log(Object.prototype.toString.call(undefined));
+        console.log(Object.prototype.toString.call([]));
+        console.log(Object.prototype.toString.call(function () { }));
+        console.log(Object.prototype.toString.call({}));
+
+    </script>
+
+</body>
+
+</html>

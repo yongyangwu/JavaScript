@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>原型的概念</title>
+</head>
+
+<body>
+    <div>
+    </div>
+
+    <script>
+        
+        console.log({})
+      
+
+
+
+        Function.prototype.b = 'a';
+        Object.prototype.b = 'b';
+        function Person() {};
+        var p = new Person();
+        console.log('p.a: ' + p.a); // a  undefined
+        console.log('p.b: ' + p.b); // b  b
+        // p.a 
+        //1.自身没有
+        //2.Person.prototype
+        //3.Person.prototype的原型对象 => Function.prototype =>Object.prototype
+         function foo(){
+
+         }
+         console.log(foo.b)
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

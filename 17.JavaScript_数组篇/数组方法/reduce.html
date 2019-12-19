@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // var arr = [1,2,3,4,5];
+    // var sum = arr.reduce(function(prev,cur,index,array){
+    //     console.log(prev,cur)
+    //     return prev-cur
+    // })
+    // console.log(sum)
+
+    var  arr = [{id:1,name:'11'},{id:2},{id:3},{id:4},{id:2,name:'222'}];
+    for(var  i  =0;i<arr.length;i++){
+        if(arr[i].id==2){
+            arr.splice(i,1)
+
+        }
+    }
+    console.log(arr)
+</script>
+
+</body>
+</html>

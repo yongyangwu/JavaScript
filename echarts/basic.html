@@ -11,6 +11,7 @@
 
 <body>
     <div id="main" style="width: 1000px;height:700px;"></div>
+    <button onclick="change()">改变</button>
 
     <script>
         // 基于准备好的dom，初始化echarts实例
@@ -175,6 +176,134 @@
             // 控制台打印数据的名称
             console.log(params);
         });
+        function change() {
+            var option = {
+                title: {
+                    text: ''
+                },
+                tooltip: {},
+                animationDurationUpdate: 1500,
+                animationEasingUpdate: 'quinticInOut',
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            fontSize: 12
+                        },
+                    }
+                },
+                legend: {
+                    x: "center",
+                    show: false,
+                    data: ["夫妻", "战友", '亲戚']
+                },
+                series: [
+                    {
+                        type: 'graph',
+                        layout: 'force',
+                        symbolSize: 45,
+                        focusNodeAdjacency: true,
+                        roam: true,
+                        categories: [{
+                            name: '夫妻',
+                            itemStyle: {
+                                normal: {
+                                    color: "#009800",
+                                }
+                            }
+                        }, {
+                            name: '同学',
+                            itemStyle: {
+                                normal: {
+                                    color: "#4592FF",
+                                }
+                            }
+                        }, {
+                            name: '亲戚',
+                            itemStyle: {
+                                normal: {
+                                    color: "#3592F",
+                                }
+                            }
+                        }],
+                        label: {
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: 12
+                                },
+                            }
+                        },
+                        force: {
+                            repulsion: 1000
+                        },
+                        edgeSymbolSize: [4, 50],
+                        edgeLabel: {
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: 10
+                                },
+                                formatter: "{c}"
+                            }
+                        },
+                        data: [{
+                            name: '徐贱云',
+                            id: 1,
+                            value: '徐贱云',
+                            draggable: true,
+                        }, {
+                            name: '冯可梁',
+                            category: 1,
+                            draggable: true,
+                        }, {
+                            name: '邓志荣',
+                            category: 1,
+                            draggable: true,
+                        }, {
+                            name: '李荣庆',
+                            category: 1,
+                            draggable: true,
+                            itemStyle: {
+                                color: 'red'
+                            }
+                        }, {
+                            name: '李伟',
+                            id: 2,
+                            category: 1,
+                            draggable: true,
+                            itemStyle: {
+                                color: 'red'
+                            }
+                        }],
+                        links: [{
+                            source: 0,
+                            target: 1,
+                            category: 1,
+                            value: '夫妻'
+                        }, {
+                            source: 1,
+                            target: 2,
+                            value: '子女'
+                        }, {
+                            source: 4,
+                            target: 3,
+                            value: '同学'
+                        }],
+                        lineStyle: {
+                            normal: {
+                                opacity: 0.9,
+                                width: 1,
+                                curveness: 0
+                            }
+                        }
+                    }
+                ]
+            };
+            myChart.setOption(option);
+
+        }
+
 
     </script>
 

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./echarts.js"></script>
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="graph" style="width: 100%;height: 100%;"></div>
+    <div onclick="getPosition()" style="position: absolute;right:0;top:0;">
+    点击
+    </div>
+    <script>
+        function getPosition(){
+            var option = myChart.getOption();
+            var nodes = option.series[0].data;
+            console.log('nodes',nodes)
+        }
+        var myChart = echarts.init(document.getElementById("graph"));
+        var centerX = document.getElementById("graph").offsetWidth / 2;
+        var centerY = document.getElementById("graph").offsetHeight / 2;
+        console.log('this.centerX', centerX)
+        console.log('this.centerY', centerY)
+        var nodes = [];
+        var links = [];
+        for (var i = 0; i < 5; i++) {
+            if (i == 0) {
+                nodes.push({
+                    id: "0",
+                    x: centerX,
+                    y: centerY,
+                    symbolSize: 40,
+                    // symbol: "circle",
+                    fixed: true,
+                    name: "0"
+                });
+            } else {
+                var r = 100;
+                var degree = i * 360 / 4;
+                let x = centerX + Math.cos(Math.PI * 2 / 360 * degree) * r;
+                let y = centerY + Math.sin(Math.PI * 2 / 360 * degree) * r;
+                // //通过数学函数获取点
+                // console.log('Math.PI * 2 / 360 * degree',Math.PI * 2 / 360 * degree);
+                // let x = ce.x +  Math.cos(Math.PI * 2 / 360 * degree) * r;
+                // let y = ce.y+ Math.sin(Math.PI * 2 / 360 * degree) * r;
+                nodes.push({
+                    id: i.toString(),
+                    // x: x,
+                    // y: y,
+                    // fixed: true,
+                    symbolSize: 40,
+                    // symbol: "circle",
+                    name: i.toString()
+                });
+            }
+            links.push({
+                source: '0',
+                target: i.toString(),
+                value: 100
+            })
+        }
+        var option = {
+            title: {
+                top: "top",
+                left: "left",
+                textStyle: {
+                    color: "#000000"
+                }
+            },
+            tooltip: {
+                backgroundColor: "#fff",
+                borderWidth: 1,
+                borderColor: "rgba(0,0,0,0.1)",
+                textStyle: {
+                    color: "#000"
+                }
+            },
+            toolbox: {
+                right: 20,
+                feature: {
+                    saveAsImage: {
+                        pixelRatio: 2
+                    }
+                }
+            },
+            backgroundColor: "#ffffff",
+            legend: {
+                data: [{ name: "群" }, { name: "人" }],
+                textStyle: {
+                    color: "#000000"
+                },
+                icon: "circle",
+                type: "scroll",
+                orient: "vertical",
+                left: 10,
+                top: 20,
+                bottom: 20,
+                itemWidth: 10,
+                itemHeight: 10
+            },
+            animationDuration: 1000,
+            animationEasingUpdate: "quinticInOut",
+            series: [
+                {
+                    type: "graph",
+                    layout: "force",
+                    force: {
+                        repulsion: 80,
+                        gravity: 0,
+                        edgeLength: 100,
+                        layoutAnimation: true
+                    },
+                    edgeSymbol: ["", ""],
+                    data: nodes,
+                    links: links,
+                    categories: [{ name: "群" }, { name: "人" }],
+                    roam: true,
+                    draggable: true,
+                    nodeScaleRatio: 1,
+                    focusNodeAdjacency: true,
+                    lineStyle: {
+                        normal: {
+                            opacity: 1,
+                            width: 1.5,
+                            curveness: 0
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: "inside",
+                            textStyle: {
+                                color: "#000000",
+                                fontWeight: "normal",
+                                fontSize: "12" //字体大小
+                            },
+                            formatter: function (params) {
+                                return params.data.showName;
+                            },
+                            fontSize: 14,
+                            fontStyle: "600"
+                        }
+                    },
+                    edgeLabel: {
+                        normal: {
+                            show: true,
+                            textStyle: {
+                                fontSize: 12
+                            },
+                            formatter: "{c}"
+                        }
+                    },
+                    color: ["#ff7f50", "#6dadd1"]
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+    </script>
+
+</body>
+
+</html>

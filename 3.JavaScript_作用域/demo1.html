@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域</title>
+</head>
+<body>
+
+
+<script>
+    
+    var arr = [];
+    for(var i =0;i<100000;i++){
+        arr[i]=function(){
+            console.log(i)
+        }
+    }
+    
+
+
+    // console.log(i)
+    // arr[3]()
+    console.log(arr[3])
+    //4
+    //5
+    //3
+    
+
+
+
+
+   
+</script>
+
+</body>
+</html>

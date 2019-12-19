@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-<div>深拷贝方法3_Object.create() </div>
+    <div>深拷贝方法3_Object.create() </div>
 
-<script>
-    var obj = {
-        a:1
-    };
-    var cloneObj = Object.create(obj)
-    console.log(cloneObj)
+    <script>
+        // Object.create() 方式创建
+        var a = { rep: 'apple' }
+        var b = Object.create(a)
+        console.log(b)  // {}
+        console.log(b.__proto__) // {rep: "apple"}
+        console.log(b.rep) // {rep: "apple"}
+        Object.create()
+        // 方法创建的对象时，属性是在原型下面的，也可以直接访问 b.rep // {rep: "apple"} ,
+        // 此时这个值不是吧b自身的，是它通过原型链proto来访问到b的值。
 
-</script>
+    </script>
 
 </body>
+
 </html>

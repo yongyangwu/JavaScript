@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+
+<body>
+   <script>
+      var arr = [{
+         key: '01',
+         value: '乐乐'
+      }, {
+         key: '02',
+         value: '博博'
+      }, {
+         key: '03',
+         value: '淘淘'
+      }, {
+         key: '04',
+         value: '哈哈'
+      }, {
+         key: '01',
+         value: '乐乐'
+      }];
+
+      //  方法1：利用对象访问属性的方法，判断对象中是否存在key
+      var result = [];
+      var obj = {};
+      for (var i = 0; i < arr.length; i++) {
+         if (!obj[arr[i].key]) {
+            result.push(arr[i]);
+            obj[arr[i].key] = true;
+         }
+      }  
+      console.log(result)
+   </script>
+</body>
+
+</html>

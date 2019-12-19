@@ -5,20 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-<div>
 
-</div>
 <script>
-    alert(a);
-    a();
-    var a = 3;
-    function a() {
-        alert(10)
+    var foo = function(){
+        alert(1);
+    };
+    function foo() {
+        alert(2);
     }
-    alert(a)
-    a= 6;
-    a();
 
+    
+    // function foo2() {
+    //     foo = function () {
+    //         alert(3)
+    //     }
+    // }
+    // foo2();
+    foo()
 </script>
 
 </body>

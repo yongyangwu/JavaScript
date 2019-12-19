@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="echarts.js"></script>
+    <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BCah4ceWZG59voYSewyGOqOPrClvkx1p"></script>-->
+    <!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>-->
+</head>
+
+<body>
+    <div id="graph" style="height:900px;"></div>
+
+    <script>
+        var myChart = echarts.init(document.getElementById('graph'));
+        var nodes = [
+            {
+                id: '1',
+                name: 'tom',
+                showName: 'tom',
+                x:300,
+                y:300,
+                fixed:true,
+                symbol: "image://" + './people.png',
+                symbolSize: 30,
+                category: 0,
+                tooltip: {
+                    show: false
+                },
+                label: {
+                    position: "bottom"
+                }
+            },
+            {
+                id: '2',
+                name: 'jim',
+                showName: 'jim',
+                symbol: "image://" + './phone.png',
+                symbolSize: 30,
+                category: 0,
+                tooltip: {
+                    show: false
+                },
+                label: {
+                    position: "bottom"
+                }
+            }
+        ]
+        var links = [{
+            source: '1',
+            target: '2',
+            value: '好友',
+            lineStyle: {
+                normal: {
+                    // text: relarr[i],
+                    color: "#6dadd1"
+                }
+            },
+            tooltip: {
+                show: true
+            },
+            label: {
+                show: true
+            }
+        }
+        ]
+        var option = {
+            title: {
+                top: "top",
+                left: "left",
+                textStyle: {
+                    color: "#000000"
+                }
+            },
+            tooltip: {
+                formatter: "{b}"
+            },
+            toolbox: {
+                x: (document.getElementById("graph").offsetWidth - 90),
+                feature: {
+                    saveAsImage: {
+                        pixelRatio: 2
+                    }
+                }
+            },
+            backgroundColor: "#f7f7f7",
+            legend: {
+                data: [{ name: "群" }, { name: "人" }],
+                textStyle: {
+                    color: "#000000"
+                },
+                icon: "circle",
+                type: "scroll",
+                orient: "vertical",
+                left: 10,
+                top: 20,
+                bottom: 20,
+                itemWidth: 10,
+                itemHeight: 10
+            },
+            animationDuration: 1000,
+            animationEasingUpdate: "quinticInOut",
+            series: [
+                {
+                    type: "graph",
+                    layout: "force",
+                    force: {
+                        repulsion: 80,
+                        gravity: 0,
+                        edgeLength: 100,
+                        layoutAnimation: true
+                    },
+                    edgeSymbol: ["", ""],
+                    data: nodes,
+                    links: links,
+                    categories: [{ name: "群" }, { name: "人" }],
+                    roam: true,
+                    draggable: true,
+                    nodeScaleRatio: 1,
+                    focusNodeAdjacency: true,
+                    lineStyle: {
+                        normal: {
+                            opacity: 1,
+                            width: 1.5,
+                            curveness: 0
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: "inside",
+                            textStyle: {
+                                color: "#000000",
+                                fontWeight: "normal",
+                                fontSize: "12" //字体大小
+                            },
+                            formatter: function (params) {
+                                return params.data.showName;
+                            },
+                            fontSize: 14,
+                            fontStyle: "600"
+                        }
+                    },
+                    edgeLabel: {
+                        normal: {
+                            show: true,
+                            textStyle: {
+                                fontSize: 12
+                            },
+                            formatter: "{c}"
+                        }
+                    },
+                    color: ["#ff7f50", "#6dadd1"]
+                }
+            ]
+        };
+        myChart.setOption(option);
+
+
+
+    </script>
+
+</body>
+
+</html>

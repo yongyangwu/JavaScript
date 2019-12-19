@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <canvas id="canvas"  style="border:1px solid red"></canvas> -->
+    <!-- <img src="./shiping.png" alt="" width="298" height="225"> -->
+
+    <script>
+        console.log(Math.PI)
+        // var c = document.getElementById("canvas");
+        // var ctx = c.getContext("2d");
+        var img = new Image();
+        img.src = "./girl.jpg";
+        img.onload = function () {
+            var canvas = document.createElement('canvas')
+            canvas.width =100;
+            canvas.height =100;
+
+            const ctx = canvas.getContext('2d');
+            console.log(img.width)
+            console.log(img.height)
+            ctx.arc(50, 50, 50, 0, 2 * Math.PI);
+            // 从画布上裁剪出这个圆形
+            // ctx.save()
+            ctx.clip();
+            // ctx.drawImage(img, 50, 50, 100, 100);
+            // ctx.fill()
+            ctx.drawImage(img, 0, 0, 100, 100); 
+            document.body.appendChild(canvas)
+        }
+    </script>
+</body>
+
+</html>

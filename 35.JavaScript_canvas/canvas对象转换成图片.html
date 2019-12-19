@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <img src="http://10.20.1.53:18880/gcmsg-images/telegram/headImages/87/8730770028f5baa0162293a2233268f8.jpg" alt=""> -->
+
+
+    <script>
+        var img = new Image();
+
+        // img.src = "https://ss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a9e671b9a551f3dedcb2bf64a4eff0ec/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg";
+        // img.src='./girl.jpg';
+        img.src='http://10.20.1.53:18880/gcmsg-images/telegram/headImages/9f/9f786266ae642ee58b09185aba16017e.jpg';
+        // img.src = 'http://10.20.1.53:18880/gcmsg-images/telegram/headImages/3b/3baf4169956cfc19441557699110fc5f.jpg';
+        // img.src="http://localhost:3000/demo.png"
+        img.crossOrigin="anonymous";
+        img.onload = function () {
+            // alert(22)
+            var canvas = document.createElement('canvas')
+            // canvas.id ='demo'
+            var radius = 100;
+            canvas.width =radius;
+            canvas.height =radius;
+            const ctx = canvas.getContext('2d');
+            // console.log(img.width)
+            // console.log(img.height)
+            ctx.arc(radius/2, radius/2, radius/2, 0, 2 * Math.PI); 
+            ctx.strokeStyle = "blue";
+              ctx.stroke();
+            ctx.clip();
+            ctx.drawImage(img, 0, 0, radius, radius); 
+            // ctx.save()
+            document.body.appendChild(canvas)
+            console.log(canvas.toDataURL())
+            // var image = document.createElement('img');
+            // image.setAttribute("crossOrigin",'Anonymous')
+            // image.src = canvas.toDataURL();
+            // document.body.appendChild(image)
+        }
+    </script>
+</body>
+
+</html>

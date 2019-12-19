@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>原型的概念</title>
+</head>
+
+<body>
+    <div>
+    </div>
+
+    <script>
+
+        function person() {
+
+        }
+        console.log(person.name)
+        // 先去person对象找，
+        //找到就好找不到就去person的原型对象找，也就是person.__proto__去找；
+        //此时person.__proto__的原型对象是Function.prototype，
+        //如果再找不到就去Object.prototype上去找。再找不到就结束了
+        function person() {
+
+        }
+        var person1 = new person()
+        console.log(person1.name)
+        // 先去person1对象找，找到就好找不到就去person1的原型对象找，
+        //也就是person1.__proto__去找；
+        //此时person.__proto__的原型对象是person.prototype
+        //再找不到就去Object.prototype
+        /*
+          函数通过new调用执行的时候实际干了下面几件事情
+          1.创建了一个新对象；
+          2.将函数内的this绑定到这个新对象上
+          3.给新对象添加相应的属性和方法
+          4.将这个新对象的__proto__连接到调用函数的prototype上
+          5.返回新对象
+         */
+
+        Function.prototype.a = 'a';
+        Object.prototype.b = 'b';
+        function Person() { };
+        var p = new Person();
+        console.log('p.a: ' + p.a); // 
+        console.log('p.b: ' + p.b); // 
+        console.log(Object)
+        function Foo() {
+            getName = function () {
+                alert(1);
+            };
+            return this;
+        }
+        Foo.getName = function () {
+            alert(2);
+        };
+        Foo.prototype.getName = function () {
+            alert(3);
+        };
+        var getName = function () {
+            alert(4);
+        };
+        function getName() {
+            alert(5);
+        }
+        Foo.getName();//2
+        getName();//4
+        Foo().getName();//1
+        getName();//1
+        // new Foo.getName();//2
+        // new Foo().getName();//1
+        // new new Foo().getName();//
+    </script>
+
+</body>
+
+</html>

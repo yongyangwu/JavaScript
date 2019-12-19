@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 500px;
+            height: 500px;
+            /* background-color: lightpink; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div style="width: 100px;height: 100px;background-color: red;"></div> -->
+    <div style="position: relative;">
+            <canvas id="canvas" width="500" height="500" style="cursor:crosshair;position: absolute;"></canvas>
+            <canvas id='network' width="500" height="500"></canvas>
+
+    </div>
+   
+    <script>
+        //Canvas
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        //Variables
+        var canvasx = canvas.offsetLeft;
+        var canvasy = canvas.offsetTop;
+        console.log('canvasx', canvasx)
+        console.log('canvasy', canvasy)
+        console.log(canvas.offsetLeft)
+        var last_mousex = last_mousey = 0;
+        var mousex = mousey = 0;
+        var mousedown = false;
+        //Mousedown
+        canvas.onmousedown = function (e) {
+            last_mousex = parseInt(e.clientX - canvasx);
+            last_mousey = parseInt(e.clientY - canvasy);
+            mousedown = true;
+        }
+        canvas.onmouseup = function (e) {
+            mousedown = false;
+        }
+        canvas.onmousemove = function (e) {
+            console.log(e)
+            mousex = parseInt(e.clientX - canvasx);
+            mousey = parseInt(e.clientY - canvasy);
+            if (mousedown) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
+                ctx.beginPath();
+                var width = mousex - last_mousex;
+                var height = mousey - last_mousey;
+                ctx.rect(last_mousex, last_mousey, width, height);
+
+                ctx.stroke();
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

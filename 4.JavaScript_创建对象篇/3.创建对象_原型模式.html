@@ -7,33 +7,26 @@
 <body>
 
 <script>
-    // function Person() {
-    //
-    // }
-    // Person.prototype.name = "bob";
-    // Person.prototype.age = 26;
-    // Person.prototype.sayName = function () {
-    //     alert(this.name);
-    // };
-    // var person1 = new Person();
-    // person1.sayName(); //"bob
-    // var person2 = new Person();
-    // person2.sayName();
-    // console.log(Object.keys(person1))
-</script>
-
-<script>
     function Person() {
-
+            
     }
+    Person.prototype.name = "bob";
+    Person.prototype.age = 26;
 
-    var friend  = new Person()
-    Person.prototype = {
-        constructor:Person,
-        name:"bob"
-    }
-    console.log(friend.name)
+    Person.prototype.sayName = function () {
+        alert(this.name);
+    };
 
+    var person1 = new Person();
+
+    person1.name = 'tom'
+    // person1.sayName(); 
+    var person2 = new Person();
+    console.log(person2.name)
+    // person2.sayName();
+    // alert(person.sayName == person2.sayname)
+
+  
 </script>
 
 </body>
