@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+       var p1 = new Promise(function(resolve,reject){
+           setTimeout(function(){
+               reject('error')
+           },3000)
+       })
+       var p2 = new Promise(function(resolve,reject){
+           setTimeout(function(){
+               resolve(p1)
+           },1000)
+       })
+       p2.then(function(data){
+           console.log('data',data)
+       },function(err){
+           console.log('error',err)
+       })
+
+    </script>
+
+</body>
+
+</html>

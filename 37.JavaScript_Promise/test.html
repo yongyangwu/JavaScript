@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //手写一个promise
+
+        function Promise(exector) {
+            var self = this;
+            this.status = 'pending';
+            this.value = undefined;
+            this.onCallbackFullfilled = undefined;
+            this.onCallbackRejected = undefined
+            function resolve(value) {
+                self.status = 'resolved';
+                self.value = value;
+                if (self.onCallbackFullfilled) {
+                    self.onCallbackFullfilled(value)
+                }
+            }
+            function reject() {
+
+            }
+            exector(resolve, reject)
+        }
+        Promise.prototype.then = function (onFullfilled, onRejected) {
+            if (this.status == 'resolved') {
+                onFullfilled(this.value)
+            }
+            if (this.status == 'rejected') {
+                onRejected()
+            }
+            if (this.status == 'pending') {
+                let self = this;
+                let promise2;
+                promise2 = new Promise(function (resolve, reject) {
+                    // console.log(onFullfilled)
+                    self.onCallbackFullfilled = onFullfilled
+                    self.onCallbackRejected = onRejected
+                })
+                return promise2
+            }
+        }
+        var p1 = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve(1)
+            }, 3000)
+        })
+        .then(function (data) {
+            console.log('data',data)
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve(2)
+                }, 2000)
+            })
+        })
+        .then(function(data2){
+            console.log('data2',data2)
+
+        })
+        // p2.then(function (data) {
+        //     console.log(data)
+
+        // }, function (error) {
+
+        // })
+
+
+    </script>
+
+</body>
+
+</html>
