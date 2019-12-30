@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Promise(executor) {
+            let self = this
+            this.status = 'pending' //当前状态
+            this.value = undefined  //存储成功的值
+            this.reason = undefined //存储失败的原因
+            this.onResolvedCallbacks = []//存储成功的回调
+            this.onRejectedCallbacks = []//存储失败的回调
+            function resolve(value) {
+                if (self.status == 'pending') {
+                    self.status = 'resolved'
+                    self.value = value
+                    self.onResolvedCallbacks.forEach(fn => fn());
+                }
+            }
+            function reject(error) {
+                if (self.status == 'pending') {
+                    self.status = 'rejected'
+                    self.reason = error
+                    self.onRejectedCallbacks.forEach(fn => fn())
+                }
+            }
+            try {
+                executor(resolve, reject)
+            } catch (error) {
+                reject(error)
+            }
+        }
+        Promise.prototype.then = function (infulfilled, inrejected) {
+            let self = this
+            let promise2
+            if (this.status == 'resolved') {
+                promise2 = new Promise(function (resolve, reject) {
+                    infulfilled(self.value)
+                })
+            }
+            if (this.status == 'rejected') {
+                promise2 = new Promise(function (resolve, reject) {
+                    inrejected(self.reason)
+                })
+            }
+            if (this.status == 'pending') {
+                console.log(self.value)
+                promise2 = new Promise(function (resolve, reject) {
+                    self.onResolvedCallbacks.push(function () {
+                        infulfilled(self.value)
+                    })
+                    self.onRejectedCallbacks.push(function () {
+                        inrejected(self.reason)
+                    })
+                })
+            }
+            return promise2
+        }
+        new Promise((resolve, reject) => {
+            setTimeout(resolve('superman'), 2000);
+        }).then(username => {
+            return new Promise((resolve, reject) => {
+                setTimeout(resolve(username), 2000);
+            })
+        }).then(user => {
+            console.log(user);
+        })
+
+    </script>
+
+</body>
+
+</html>

@@ -15,24 +15,15 @@
                 resolve(1)
             }, 2000)
         }).then(success => {
-            console.log('success',success)
-            new Promise(function (resolve, reject) {
+            console.log(success)
+            return new Promise(function (resolve, reject) {
                 setTimeout(function () {
                     resolve(success + 1)
                 }, 2000)
             })
-        },function(err){
-            console.log('错误1')
-
         }).then(function (data) {
             console.log(data)
-        }, function (err) {
-            console.log('错误2')
-
         })
-
-
-
     </script>
 
 </body>

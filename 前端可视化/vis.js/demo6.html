@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"
+        integrity="sha256-ff7iz7mLH5QJA9IUC44b+sqjMi7c2aTR9YO2DSzAGZo=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="reset()">重置</button>
+    <div class="container" style="position: relative;display: flex;">
+        <div id="networkContainer" style="width: 900px;height:600px;overflow: auto;">
+            <div id="network" style="width: 900px;height:600px"></div>
+
+        </div>
+
+        <div style="position: relative;">
+            <div id="duplicate" style="border:1px solid pink;width: 300px;height: 225px;;">
+                <img src="" alt="" id="duplicateImg" width="300" height="225">
+            </div>
+            <div style="position: absolute;width: 150px;height: 112.5px;border: 1px solid blue;">
+                <!-- <img src="" alt=""> -->
+
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var nodes = new vis.DataSet([
+            { id: 1, label: 'item 1', shape: 'circularImage', image: './animal.png', physics: false },
+            { id: 2, label: 'item 2', shape: 'circularImage', image: './people.png', physics: false },
+            // { id: 3, label: 'item 3', shape: 'circularImage', image: './flower.png', physics: false,x:500,y:500 },
+        ]);
+        // create an array with edges
+        var edges = new vis.DataSet([
+            { from: 1, to: 2, physics: false, smooth: { enabled: true, type: 'straightCross', roundness: 1 } },
+            // { from: 1, to: 3 },
+        ]);
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+        var options = {
+            // autoResize: false,
+            nodes: {
+                borderWidth: 4,
+                size: 26,
+                color: {
+                    border: '#222222',
+                    background: '#666666'
+                },
+                font: { color: 'red' }
+            },
+            interaction: {
+                multiselect: true,
+
+            },
+
+        };
+        var container = document.getElementById('network')
+        var network = new vis.Network(container, data, options);
+        console.log(network.getScale())
+        network.on('dragEnd', () => {
+            // console.log(network.getPositions())
+            // var currentNodes = data.nodes.get(
+            //     data.nodes.getIds()
+            // );
+            // var currentEdges = data.edges.get(
+            //     data.edges.getIds()
+            // );
+            // var arrPosition = network.getPositions();
+            // Object.keys(arrPosition).forEach(function (key, index) {
+            //     currentNodes.forEach(item => {
+            //         if (item.id == key) {
+            //             item.x = arrPosition[key].x;
+            //             item.y = arrPosition[key].y;
+            //             item.physics = false;
+            //         }
+            //     });
+            // });
+            // var newNodes = [{ id: 1, label: 'item 1', shape: 'circularImage', image: './animal.png', physics: false },
+            // { id: 2, label: 'item 2', shape: 'circularImage', image: './people.png', physics: false },]
+            // network.destroy()
+            // console.log(network)
+
+            // network.setSize('1200', '600');
+          
+
+            // network.redraw()
+
+        })
+        network.on('stabilized',()=>{
+            console.log(network.getPositions())
+
+        })
+
+        function reset() {
+            container.style.width='1200px';
+            container.style.height='600';
+            network.setSize('1200', '600');
+            network.redraw()
+            document.getElementById('networkContainer').scrollLeft = 300
+
+            return
+            console.log(network.getPositions())
+
+
+
+            console.log(network.canvasToDOM(network.getPositions()[2]))
+            var addWidth = network.canvasToDOM(network.getPositions()[2]).x
+            console.log('addWidth', addWidth)
+
+            // return
+
+            // network.redraw()
+            var currentNodes = data.nodes.get(
+                data.nodes.getIds()
+            );
+            var currentEdges = data.edges.get(
+                data.edges.getIds()
+            );
+            var arrPosition = network.getPositions();
+            Object.keys(arrPosition).forEach(function (key, index) {
+                currentNodes.forEach(item => {
+                    if (item.id == key) {
+                        item.x = arrPosition[key].x + 90;
+                        item.y = arrPosition[key].y + 90;
+                        item.physics = false;
+                    }
+                });
+            });
+            network.setSize('1200', '600');
+            data.nodes.update(currentNodes);
+            document.getElementById('network').scrollLeft = 300
+
+            // network.on('afterDrawing',()=>{
+            console.log(22, document.getElementsByTagName('canvas')[0].toDataURL("image/png", 1))
+
+            document.getElementById('duplicateImg').src = document.getElementsByTagName('canvas')[0].toDataURL()
+            // })
+
+
+        }
+    </script>
+
+</body>
+
+</html>

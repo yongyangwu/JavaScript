@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js" integrity="sha256-ff7iz7mLH5QJA9IUC44b+sqjMi7c2aTR9YO2DSzAGZo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"
+        integrity="sha256-ff7iz7mLH5QJA9IUC44b+sqjMi7c2aTR9YO2DSzAGZo=" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
         * {
@@ -17,26 +18,27 @@
 </head>
 
 <body>
-
     <div class="container" style="position: relative;display: flex;">
         <div id="network" style="width: 1200px;height:900px;border:1px solid red;overflow:auto;"></div>
         <div style="position: relative;">
-            <div id="duplicate" style="border:1px solid pink;width: 300px;height: 225px;;"></div>
+            <div id="duplicate" style="border:1px solid pink;width: 300px;height: 225px;;">
+                <img src="" alt="" id="duplicateImg" width="300" height="225">
+            </div>
             <div style="position: absolute;width: 150px;height: 112.5px;border: 1px solid blue;">
+               
             </div>
         </div>
-        
     </div>
     <script>
         var nodes = new vis.DataSet([
             { id: 1, label: 'item 1', shape: 'circularImage', image: './animal.png', physics: false },
             { id: 2, label: 'item 2', shape: 'circularImage', image: './people.png', physics: false },
-            { id: 3, label: 'item 3', shape: 'circularImage', image: './flower.png', physics: false },
+            // { id: 3, label: 'item 3', shape: 'circularImage', image: './flower.png', physics: false,x:500,y:500 },
         ]);
         // create an array with edges
         var edges = new vis.DataSet([
-            { from: 1, to: 2 },
-            { from: 1, to: 3 },
+            { from: 1, to: 2, physics: false, smooth: { enabled: true, type: 'straightCross', roundness: 1 } },
+            // { from: 1, to: 3 },
         ]);
         var data = {
             nodes: nodes,
@@ -45,7 +47,7 @@
         var options = {
             nodes: {
                 borderWidth: 4,
-                size: 30,
+                size: 26,
                 color: {
                     border: '#222222',
                     background: '#666666'
@@ -54,14 +56,14 @@
             },
             interaction: {
                 multiselect: true,
-               
-            }
+
+            },
 
         };
         var options2 = {
             nodes: {
                 borderWidth: 4,
-                size: 30,
+                size: 26,
                 color: {
                     border: '#222222',
                     background: '#666666'
@@ -70,8 +72,8 @@
             },
             interaction: {
                 dragView: false,
-                dragNodes:false,
-                selectable:false
+                dragNodes: false,
+                selectable: false
             }
 
         };
@@ -79,8 +81,69 @@
         var network2;
         var container = document.getElementById('network')
         var network = new vis.Network(container, data, options);
+    
+        var currentNodes = data.nodes.get(
+            data.nodes.getIds()
+        );
+        var currentEdges = data.edges.get(
+            data.edges.getIds()
+        );
+        var arrPosition = network.getPositions();
+        Object.keys(arrPosition).forEach(function (key, index) {
+            currentNodes.forEach(item => {
+                if (item.id == key) {
+                    item.x = arrPosition[key].x;
+                    item.y = arrPosition[key].y;
+                    item.physics = false;
+                }
+            });
+        });
+        data.nodes.update(currentNodes);
         var flag = true;
+        var leftX,rightX,topY,bottomY;
+        var minArrX=[];
+
+        network.on('afterDrawing',()=>{
+            if(flag){
+                flag=false;
+                document.getElementById('duplicateImg').src=document.getElementsByTagName('canvas')[0].toDataURL();
+            }
+        })
+
+        network.on('stabilized', () => {
+            return
+            var currentNodes = data.nodes.get(
+                data.nodes.getIds()
+            );
+            var currentEdges = data.edges.get(
+                data.edges.getIds()
+            );
+            var arrPosition = network.getPositions();
+            Object.keys(arrPosition).forEach(function (key, index) {
+                currentNodes.forEach(item => {
+                    if (item.id == key) {
+                        item.x = arrPosition[key].x;
+                        item.y = arrPosition[key].y;
+                        item.physics = false;
+                    }
+                });
+            });
+            // var container2 = document.getElementById('duplicate')
+            // var nodes = new vis.DataSet(currentNodes);
+            // // create an array with edges
+            // var edges = new vis.DataSet(currentEdges);
+            // data2 = {
+            //     nodes: nodes,
+            //     edges: edges
+            // };
+            // network2 = new vis.Network(container2, data2, options2);
+            data.nodes.update(currentNodes);
+            console.log('currentNodes', currentNodes)
+
+        })
         network.on('stabilized', item => {
+            return
+            console.log(666)
             if (flag) {
                 console.log("stabilized");
                 flag = false;
@@ -111,16 +174,43 @@
                 network2 = new vis.Network(container2, data2, options2);
                 data.nodes.update(currentNodes);
                 console.log('currentNodes', currentNodes)
+
+
+
             }
+
         })
         network.on('dragEnd', () => {
             console.log('dragEnd')
+            var arrPosition = network.getPositions();
+            console.log("arrPosition ", arrPosition)
+            for( var key in arrPosition){
+                if(network.canvasToDOM(arrPosition[key]).x-4<0){
+                    minArrX.push(network.canvasToDOM(arrPosition[key]).x)
+                }
+            }
+            console.log('minArrX',minArrX)
+
+            // network.setSize(1200-minArrX[0],'900')
+            var newContainer = document.createElement('div');
+            newContainer.style.width = 1200-minArrX[0]+'px'
+            newContainer.style.height = '900px'
+            newContainer.style.display = 'none'
+            document.body.appendChild(newContainer)
+            var network2 = new vis.Network(newContainer, data, options);
+         
+            network2.on('stabilized',()=>{
+                console.log(99999)
+            console.log(document.getElementsByTagName('canvas')[1])
+              
+        })
+    
+            
+
+
+            return
             var currentNodes = data.nodes.get(data.nodes.getIds());
             var currentEdges = data.edges.get(data.edges.getIds());
-            var arrPosition = network.getPositions();
-            console.log("arrPosition ",arrPosition)
-           
-            console.log( network.canvasToDOM(arrPosition['2']))
             var current_view_position = network.getViewPosition();
             Object.keys(arrPosition).forEach(function (key, index) {
                 currentNodes.forEach(item => {
@@ -130,17 +220,6 @@
                     }
                 });
             });
-            data2.nodes.update(currentNodes);
-            data2.edges.update(currentEdges);
-            
-            network2.fit()
-            // network2.moveTo({
-            //     position: {x:current_view_position.x*network2.getScale(),y:current_view_position.y*network2.getScale()}
-            // });
-            // network2.fit()
-            console.log('network2.getScale()', network2.getScale())
-
-
         })
     </script>
 

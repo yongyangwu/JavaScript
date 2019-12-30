@@ -10,21 +10,82 @@
 
 <body>
     <script>
-       var p1 = new Promise(function(resolve,reject){
-           setTimeout(function(){
-               reject('error')
-           },3000)
-       })
-       var p2 = new Promise(function(resolve,reject){
-           setTimeout(function(){
-               resolve(p1)
-           },1000)
-       })
-       p2.then(function(data){
-           console.log('data',data)
-       },function(err){
-           console.log('error',err)
-       })
+        function MyPromise(executor) {
+            let self = this
+            self.value = undefined
+            self.reason = undefined
+            // 默认promise状态是pending
+            self.status = 'pending'
+            // 用来保存then 方法中，第一个参数
+            self.onResolvedCallbacks = []
+            // 用来保存then 方法中，第二个参数
+            self.onRejectedCallbacks = []
+            function resolve(value) {
+                if (self.status === 'pending') { //保证状态一旦变更，不能再次修改
+                    self.value = value
+                    self.status = 'resolved' // 成功状态
+                    console.log(self.onResolvedCallbacks)
+                    self.onResolvedCallbacks.forEach(fn => {
+                        fn()
+                    })
+                }
+            }
+            function reject(reason) {
+                if (self.status === 'pending') {
+                    self.reason = reason
+                    self.status = 'rejected' //失败状态
+                    self.onRejectedCallbacks.forEach(fn => {
+                        fn()
+                    })
+                }
+            }
+            executor(resolve, reject) // 因为会立即执行这个执行器函数
+        }
+
+        MyPromise.prototype.then = function (onFulfilled, onRejected) {
+            let self = this
+            if (self.status === 'resolved') {
+                onFulfilled(self.value)
+            }
+            if (self.status === 'rejected') {
+                onRejected(self.reason)
+            }
+            if (self.status === 'pending') {
+                // 订阅
+                self.onResolvedCallbacks.push(function () {
+                    onFulfilled(self.value)
+                })
+                self.onRejectedCallbacks.push(function () {
+                    onRejected(self.reason)
+                })
+            }
+        }
+
+
+
+        var p2 = new MyPromise((resolve, reject) => {
+            setTimeout(function () {
+                resolve('name.txt')
+
+            }, 1000)
+        })
+            .then(
+                (data) => {
+                    // console.log(data)
+                    return new MyPromise((resolve, reject) => {
+                        setTimeout(function () {
+                            resolve('text.txt')
+
+                        }, 1000)
+                    })
+
+                })
+                // console.log('p2',p2)
+            // .then(
+            //     (data) => { console.log(data) }
+            // )
+
+
 
     </script>
 

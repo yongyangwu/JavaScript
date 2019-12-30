@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"
+        integrity="sha256-ff7iz7mLH5QJA9IUC44b+sqjMi7c2aTR9YO2DSzAGZo=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .pic_div {
+            position: relative;
+            background-color: #fff;
+            border: 1px dotted red;
+            width: 1200px;
+            height: 800px;
+            overflow: hidden;
+        }
+
+        .pic {
+            width: 1200px;
+            height: 800px;
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pic_div" style="position: relative;">
+        <img id="imgSrc" src="flower.jpg" class="pic">
+        <div  style="position: absolute;right:20px;bottom:20px;border: 1px solid #fff;width: 240px;height: 160px;">
+            <img id="smallView" src="flower.jpg" width="240" height="160"></img>
+            <div id="focusView" style="position: absolute;border:1px solid #fff;width: 240px;height: 160px;top:0;left:0"></div>
+        </div>
+      
+    </div>
+
+    <script>
+        document.getElementById('imgSrc').addEventListener('mousewheel', function (e) {
+            if (e.wheelDelta && event.ctrlKey) {//IE/Opera/Chrome 
+                event.returnValue = false;
+            } else if (e.detail) {//Firefox 
+                event.returnValue = false;
+            }
+            var image =  document.getElementById('imgSrc');
+            if (e.wheelDelta > 0) {
+                
+                // console.log('ratioX',e.clientX/1200)
+                // console.log('ratioY',e.clientY/800)
+                // console.log('image.offsetLeft:',image.offsetLeft)
+                // console.log('image.offsetTop:',image.offsetTop)
+                
+                image.style.width = image.width+120 + 'px';
+                image.style.height = image.height+80 + 'px'; 
+                image.style.left = image.offsetLeft -120*(e.clientX/1200) + 'px';
+                image.style.top = image.offsetTop-80 *(e.clientY/800) + 'px';
+                
+            }else{
+                image.style.width = image.width-120 + 'px';
+                image.style.height = image.height-80 + 'px'; 
+                image.style.left = image.offsetLeft +120*(e.clientX/1200) + 'px';
+                image.style.top = image.offsetTop+80 *(e.clientY/800) + 'px';
+            }
+            var focusView = document.getElementById('focusView');
+            focusView.style.width = 240*(1200/ image.width)+'px'
+            focusView.style.height = 160*(800/ image.height)+'px'
+            console.log('image.style.left',image.style.left)
+            focusView.style.left=-(image.style.left.slice(0,image.style.left.length-2)/1200)*240+'px'
+            focusView.style.top=-(image.style.top.slice(0,image.style.top.length-2)/800)*160+'px'
+
+        })
+        document.getElementById('imgSrc').addEventListener('click', function (e) {
+            console.log(e)
+          
+        })
+    </script>
+
+</body>
+
+</html>

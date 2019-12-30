@@ -31,44 +31,42 @@
             exector(resolve, reject)
         }
         Promise.prototype.then = function (onFullfilled, onRejected) {
+            let self = this;
+            let promise2;
             if (this.status == 'resolved') {
-                onFullfilled(this.value)
+                self.onCallbackFullfilled = onFullfilled;
             }
             if (this.status == 'rejected') {
-                onRejected()
+                self.onCallbackFullfilled = function () {
+                    onFullfilled()
+                };
             }
-            if (this.status == 'pending') {
-                let self = this;
-                let promise2;
-                promise2 = new Promise(function (resolve, reject) {
-                    // console.log(onFullfilled)
+            promise2 = new Promise(function (resolve, reject) {
+                if (this.status == 'pending') {
+                    // console.log('self.value',self.value)
                     self.onCallbackFullfilled = onFullfilled
-                    self.onCallbackRejected = onRejected
-                })
-                return promise2
-            }
+    
+                }
+            })
+
+            return promise2
         }
-        var p1 = new Promise(function (resolve, reject) {
+        var p2 = new Promise(function (resolve, reject) {
             setTimeout(function () {
                 resolve(1)
-            }, 3000)
+            }, 2000)
         })
         .then(function (data) {
-            console.log('data',data)
-            return new Promise(function (resolve, reject) {
-                setTimeout(function () {
-                    resolve(2)
-                }, 2000)
+                console.log('data', data)
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        resolve(data + 1)
+                    }, 2000)
+                })
             })
-        })
-        .then(function(data2){
-            console.log('data2',data2)
-
-        })
-        // p2.then(function (data) {
+        console.log('p2', p2)
+        // .then(function (data) {
         //     console.log(data)
-
-        // }, function (error) {
 
         // })
 
