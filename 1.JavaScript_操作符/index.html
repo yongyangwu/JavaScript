@@ -15,10 +15,61 @@
         // var age2 = 30;
         // console.log(++age2)
         // console.log(age2)
-        var arr = [{name:'bob',children:[{name:'jim'}]}]
-        var arr2 = arr[0].children;
-        arr2[0].name='tom'
-        console.log(arr)
+        // var arr = [{name:'bob',children:[{name:'jim'}]}]
+        // var arr2 = arr[0].children;
+        // arr2[0].name='tom'
+        // console.log(arr)
+        // var nodes = [{ from: 1,to:2},{from:1,to:3},{from:2,to:3}]
+        // var result = {
+        //     nodes: [{ from: 1,to:2},{from:2,to:4}]
+        // }
+
+        // var nodesData = [];
+        // if (result.nodes.length > 0) {
+        //     result.nodes.forEach(item => {
+        //         var flag = false;
+        //         this.nodes.forEach(item2 => {
+        //             if (item.from == item2.from && item.to==item2.to) {
+        //                 console.log('节点重复')
+        //                 flag = true
+        //             }
+        //         });
+        //         if (!flag) {
+        //             nodesData.push(item)
+        //         }
+        //     });
+        // }
+        // console.log(nodesData)
+
+        // function checkImage(url) {
+        //     var img = new Image()
+        //     img.src = url;
+        //     img.onload = function () {
+        //         return true
+        //     }
+        //     img.error = function () {
+        //         return false
+        //     }
+        //     return {name:111}
+        // }
+        // var result = checkImage('https://avatar.csdnimg.cn/F/3/6/3_qq_37330613.jpg')
+        // console.log(result)
+
+
+        function getTime(){
+            setTimeout(function(){
+                return {name:'tom'}
+
+            },2000)
+            // return {age:20}
+
+        }
+        console.log(getTime())
+
+     
+
+
+
     </script>
 
 </body>

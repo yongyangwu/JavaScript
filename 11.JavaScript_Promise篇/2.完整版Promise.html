@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <script>
+        function MyPromise(excutor) {
+            let self = this
+            self.status = 'pending'
+            self.value = null
+            self.reason = null
+            self.onFulfilledCallbacks = []
+            self.onRejectedCallbacks = []
+            function resolve(value) {
+                if (self.status === 'pending') {
+                    self.value = value
+                    self.status = 'fulfilled'
+                    self.onFulfilledCallbacks.forEach(item => item())
+                }
+            }
+            function reject(reason) {
+                if (self.status === 'pending') {
+                    self.reason = reason
+                    self.status = 'rejected'
+                    self.onRejectedCallbacks.forEach(item => item())
+                }
+            }
+            try {
+                excutor(resolve, reject)
+            } catch (err) {
+                reject(err)
+            }
+        }
+        MyPromise.prototype.then = function (onFulfilled, onRejected) {
+            onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : function (data) { resolve(data) }
+            onRejected = typeof onRejected === 'function' ? onRejected : function (err) { throw err }
+            let self = this
+            if (self.status === 'fulfilled') {
+                return new MyPromise((resolve, reject) => {
+                    try {
+                        let x = onFulfilled(self.value)
+                        if (x instanceof MyPromise) {
+                            x.then(resolve, reject)
+                        } else {
+                            resolve(x)
+                        }
+                    } catch (err) {
+                        reject(err)
+                    }
+                })
+            }
+            if (self.status === 'rejected') {
+                return new MyPromise((resolve, reject) => {
+                    try {
+                        let x = onRejected(self.reason)
+                        if (x instanceof MyPromise) {
+                            x.then(resolve, reject)
+                        } else {
+                            resolve(x)
+                        }
+                    } catch (err) {
+                        reject(err)
+                    }
+                })
+            }
+            if (self.status === 'pending') {
+                return new MyPromise((resolve, reject) => {
+                    self.onFulfilledCallbacks.push(() => {
+                        // console.log(self.value)
+                        let x = onFulfilled(self.value)
+                        if (x instanceof MyPromise) {
+                            x.then(resolve, reject)
+                        } else {
+                            resolve(x)
+                        }
+                    })
+                    self.onRejectedCallbacks.push(() => {
+                        let x = onRejected(self.reason)
+                        if (x instanceof MyPromise) {
+                            x.then(resolve, reject)
+                        } else {
+                            resolve(x)
+                        }
+                    })
+                })
+            }
+        }
+  
+        // MyPromise.prototype.catch = function (fn) {
+        //     return this.then(null, fn)
+        // }
+        new MyPromise(function(resolve,reject){
+            setTimeout(function(){
+                resolve(1) 
+ 
+            },3000)
+
+        }) 
+        .then(function(data){  
+            return new MyPromise(function(resolve,reject){
+                setTimeout(function(){
+                    resolve(data+2)
+                    
+                },1000)
+            })
+        })
+        .then(function(data){
+            console.log(data)
+        })
+
+    </script> 
+
+</html>

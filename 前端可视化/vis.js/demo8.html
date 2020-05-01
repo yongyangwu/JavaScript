@@ -19,16 +19,16 @@
             position: relative;
             background-color: #fff;
             border: 1px dotted red;
-            width: 1200px;
-            height: 800px;
+            width: 1000px;
+            height: 600px;
             overflow: hidden;
         }
 
         .pic {
-            width: 1200px;
-            height: 800px;
+            width: 1000px;
+            height: 600px;
             position: absolute;
-            top:0;
+            top: 0;
             left: 0;
         }
     </style>
@@ -37,51 +37,108 @@
 <body>
 
     <div class="pic_div" style="position: relative;">
-        <img id="imgSrc" src="flower.jpg" class="pic">
-        <div  style="position: absolute;right:20px;bottom:20px;border: 1px solid #fff;width: 240px;height: 160px;">
-            <img id="smallView" src="flower.jpg" width="240" height="160"></img>
-            <div id="focusView" style="position: absolute;border:1px solid #fff;width: 240px;height: 160px;top:0;left:0"></div>
+        <img id="originSrc" src="flower.jpg" class="pic">
+        <div style="position: absolute;right:20px;bottom:20px;border: 1px solid #fff;width: 200px;height: 120px;">
+            <img id="smallSrc" src="flower.jpg" width="200" height="120"></img>
+            <div id="focusView"
+                style="position: absolute;border:1px solid #fff;width: 200px;height: 120px;top:0;left:0"></div>
         </div>
-      
+
     </div>
 
     <script>
-        document.getElementById('imgSrc').addEventListener('mousewheel', function (e) {
+        var changeWidth = 100, changeHeight = 60;
+        var originWidth = 1000, originHeight = 600;
+        var smallWidth = 200, smallHeight = 120;
+        var zoom = 0;
+        var dragStartX, dragStartY, dragEndX, dragStartY;
+        var originImage = document.getElementById('originSrc');
+        document.getElementById('originSrc').addEventListener('mousewheel', function (e) {
             if (e.wheelDelta && event.ctrlKey) {//IE/Opera/Chrome 
                 event.returnValue = false;
             } else if (e.detail) {//Firefox 
                 event.returnValue = false;
             }
-            var image =  document.getElementById('imgSrc');
-            if (e.wheelDelta > 0) {
-                
-                // console.log('ratioX',e.clientX/1200)
-                // console.log('ratioY',e.clientY/800)
-                // console.log('image.offsetLeft:',image.offsetLeft)
-                // console.log('image.offsetTop:',image.offsetTop)
-                
-                image.style.width = image.width+120 + 'px';
-                image.style.height = image.height+80 + 'px'; 
-                image.style.left = image.offsetLeft -120*(e.clientX/1200) + 'px';
-                image.style.top = image.offsetTop-80 *(e.clientY/800) + 'px';
-                
-            }else{
-                image.style.width = image.width-120 + 'px';
-                image.style.height = image.height-80 + 'px'; 
-                image.style.left = image.offsetLeft +120*(e.clientX/1200) + 'px';
-                image.style.top = image.offsetTop+80 *(e.clientY/800) + 'px';
-            }
+            
             var focusView = document.getElementById('focusView');
-            focusView.style.width = 240*(1200/ image.width)+'px'
-            focusView.style.height = 160*(800/ image.height)+'px'
-            console.log('image.style.left',image.style.left)
-            focusView.style.left=-(image.style.left.slice(0,image.style.left.length-2)/1200)*240+'px'
-            focusView.style.top=-(image.style.top.slice(0,image.style.top.length-2)/800)*160+'px'
+            if (e.wheelDelta > 0) {
+                if (zoom == 15) {
+                    return
+                }
+                zoom++
+                //设置放大后图片的宽高 每次宽增加changeWidth 高增加changeHeight
+                originImage.style.width = originImage.width + changeWidth + 'px';
+                originImage.style.height = originImage.height + changeHeight + 'px';
+                //设置原图放大后的相对原容器的位置
+                var tempWidth = originImage.offsetLeft - changeWidth * (e.clientX / originWidth);
+                var tempHeight = originImage.offsetTop - changeHeight * (e.clientY / originHeight);
+                originImage.style.left = originImage.offsetLeft - changeWidth * (e.clientX / originWidth) + 'px';
+                originImage.style.top = originImage.offsetTop - changeHeight * (e.clientY / originHeight) + 'px';
+                //计算一下放大后图片和容器的比例
+                var ratio1 = originImage.width / smallWidth
+                focusView.style.width = (smallWidth * originWidth) / originImage.width + 'px'
+                focusView.style.height = (smallHeight * originHeight) / originImage.height + 'px'
+                focusView.style.left = -tempWidth / ratio1 + 'px';
+                focusView.style.top = -tempHeight / ratio1 + 'px';
+
+            } else {
+                if (zoom == 0) {
+                    //设置缩小后图片的宽高，每次宽减少changeWidth 高减少changeHeight
+                    // originImage.style.width = originImage.width -changeWidth + 'px';
+                    // originImage.style.height = originImage.height -changeHeight + 'px';
+                    //设置原图放大后的相对原容器的位置
+                    originImage.style.left = 0
+                    originImage.style.top = 0
+
+                    // focusView.style.width = (smallWidth * originWidth) / originImage.width + 'px'
+                    // focusView.style.height = (smallHeight * originHeight) / originImage.height + 'px'
+                    focusView.style.left = 0;
+                    focusView.style.top = 0;
+
+                    return
+                }
+                zoom--
+                //设置缩小后图片的宽高，每次宽减少changeWidth 高减少changeHeight
+                originImage.style.width = originImage.width - changeWidth + 'px';
+                originImage.style.height = originImage.height - changeHeight + 'px';
+                //设置原图放大后的相对原容器的位置
+                var tempWidth = originImage.offsetLeft + changeWidth * (e.clientX / originWidth);
+                var tempHeight = originImage.offsetTop + changeHeight * (e.clientY / originHeight);
+                originImage.style.left = originImage.offsetLeft + changeWidth * (e.clientX / originWidth) + 'px';
+                originImage.style.top = originImage.offsetTop + changeHeight * (e.clientY / originHeight) + 'px';
+                var ratio1 = originImage.width / smallWidth;
+                focusView.style.width = (smallWidth * originWidth) / originImage.width + 'px'
+                focusView.style.height = (smallHeight * originHeight) / originImage.height + 'px'
+                focusView.style.left = Math.abs(tempWidth) / ratio1 + 'px';
+                focusView.style.top = Math.abs(tempHeight) / ratio1 + 'px';
+            }
+        })
+        document.getElementById('originSrc').addEventListener('mousedown', function (e) {
+          
+             e.preventDefault();
+             console.log('mousedown',e)
+            dragStartX = e.offsetX
+            dragStartY = e.offsetY
+           
+
 
         })
-        document.getElementById('imgSrc').addEventListener('click', function (e) {
-            console.log(e)
-          
+        document.getElementById('originSrc').addEventListener('mouseup', function (e) {
+            console.log('mouseleave',e)
+            dragEndX = e.offsetX
+            dragEndY = e.offsetY
+            if(zoom<0){
+                return
+            }
+            originImage.style.left = originImage.offsetLeft + (dragEndX - dragStartX) + 'px';
+            originImage.style.top = originImage.offsetTop + (dragEndY - dragStartY) + 'px';
+
+
+
+        })
+        document.getElementById('originSrc').addEventListener('click', function (e) {
+            document.getElementById('originSrc').style.cursor = 'pointer'
+
         })
     </script>
 

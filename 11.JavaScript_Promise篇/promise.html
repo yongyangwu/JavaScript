@@ -7,14 +7,26 @@
 <body>
 
 <script>
- function timeout(ms) {
-     return new Promise(function (resolve,reject) {
-         setTimeout(resolve,ms,'done');
-     })
- }
- timeout(100).then(function (value) {
-     console.log(value);
- })
+    
+    
+    new Promise(function(resolve,reject){
+        setTimeout(function(){
+            resolve(1)
+
+        },1000)
+
+    }).then(function(data){
+        console.log(data)
+        return new Promise(function(resolve,reject){
+            setTimeout(function(){
+            resolve(data+1)
+
+        },1000)
+        })
+    }).then(function(data){
+        console.log(data)
+    })
+
 </script>
 </body>
 </html>

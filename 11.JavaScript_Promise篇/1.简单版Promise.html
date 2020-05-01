@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function MyPromise(executor){
+        var self = this;
+        self.status = 'pending';
+        self.value= 'undefined';
+        self.onFulfilledCallback = 'undefined';
+        self.onRejectedCallback = 'undefined';
+        function resolve(data){
+            self.status = 'resolved'
+            self.value = data;
+            self.onFulfilledCallback();
+        }
+        function reject(){
+            self.status = 'rejected'
+        }
+        executor(resolve,reject)
+    }
+    MyPromise.prototype.then =function(onFulfilled,onRejected){
+        var self = this;
+        if(self.status=='resolved'){
+             onFulfilled(self.value)
+        }
+        if(self.status=='rejected'){
+            onRejected(self.data)
+        }
+        if(self.status=='pending'){
+            self.onFulfilledCallback = function(){
+                onFulfilled(self.value);
+
+            } 
+            self.onRejectedCallback = onRejected;
+
+        }
+    }
+    new MyPromise(function(resolve,reject){
+        setTimeout(function(){
+            resolve(1)
+        },1000)
+
+    }).then(function(data){
+        console.log(data) 
+    })
+
+</script>
+</body>
+</html>

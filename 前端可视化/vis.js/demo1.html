@@ -82,8 +82,25 @@
             console.log('arrPosition', arrPosition)
         }
         function add() {
-            return
-            data.nodes.add({ id: 4, text: 'item 4' })
+            var saveNodes = data.nodes.map(item=>{
+                return item
+            })
+            var arrPosition = network.getPositions();
+            Object.keys(arrPosition).forEach((key, index) => {
+                saveNodes.forEach(item => {
+                    if (item.id == key) {
+                        item.x = arrPosition[key].x;
+                        item.y = arrPosition[key].y;
+                        console.log(2222)
+                    }
+
+                });
+            });
+            console.log(saveNodes)
+
+            return;
+            // return
+            // data.nodes.add({ id: 4, text: 'item 4' })
             data.edges.add({ from: 1, to: 4 })
         }
         document.onkeydown = function (e) {
