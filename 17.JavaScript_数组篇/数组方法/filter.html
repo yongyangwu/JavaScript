@@ -1,44 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-</head>
-<body>
-<script>
+  </head>
+  <body>
+    <script>
+      var arr1 = [
+        { id: 1, name: "bob" },
+        { id: 2, name: "jim" },
+      ];
+      var arr2 = [
+        { id: 1, name: "bob" },
+        { id: 3, name: "tom" },
+      ];
+      console.log(arr2.every((item)=> item.id>1))
 
-    var arrMap = [{name:'bob',age:28},{name:'tom',age:29}];
-    // var arrMap = [2,2];
-    var arr = arrMap.map((item)=>{
-        return 1
-    })
-    console.log(arr)
+    //   console.log(
+    //     arr2.filter((item) => arr1.every((good) => good.id !== item.id))
+    //   );
+      //   var arr3 = [
+      //     ...(arr2.filter((item) =>
+      //       arr1.every((good) => good.id !== item.id)
+      //     ) || []),
+      //     ...arr1,
+      //   ];
+      //   console.log(arr3)
+    //   var arr3 =[1,2,3,4];
+    // //   console.log(arr3.filter(item => item>2))
+    //   var fn =(item)=>item;
+    //   console.log(fn(22))
 
-
-    // var arr = [1,2,3,4,5,4,3,2,1];
-    // var filterResult = arr.map(function (item,index,array) {
-    //     return (item>2)
-    // })
-    // console.log(filterResult)
-    // console.log(arr)
-
-    // var obj  = {
-    //     name:'bob',
-    //     age:12
-    // }
-    // console.log(Object.keys(obj ))
-
-
-
-
-
-
-
-
-
-
-
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
