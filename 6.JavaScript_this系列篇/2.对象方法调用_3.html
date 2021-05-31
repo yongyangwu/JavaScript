@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      //2.若是在对象方法中定义函数 那么情况就不同了
+      var x = 2;
+      var obj = {
+        x: 10,
+        foo: function () {
+          console.log("this", this);
+          function f() {
+            console.log(this); // Window
+            console.log(this.x); // 2
+          }
+          f();
+        },
+      };
+      obj.foo(); //可以这么理解：函数 f 虽然是在 obj.foo 内部定义的，但它仍然属于一个普通函数，this 仍指向 window。
+    </script>
+  </body>
+</html>

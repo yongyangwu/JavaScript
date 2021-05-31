@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>this</title>
+  </head>
+  <body>
+    <script>
+      var name = "window";
+      var obj = {
+        name: "obj",
+        foo: function () {
+          return function f() {
+            console.log(this);
+            console.log(this.name);
+          };
+        },
+      };
+      obj.foo()();
+    </script>
+  </body>
+</html>

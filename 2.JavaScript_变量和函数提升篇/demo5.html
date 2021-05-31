@@ -13,6 +13,12 @@
         alert(2);
       }
 
+      function foo2() {
+        foo = function () {
+          alert(3);
+        };
+      }
+      foo2();
       foo();
     </script>
   </body>

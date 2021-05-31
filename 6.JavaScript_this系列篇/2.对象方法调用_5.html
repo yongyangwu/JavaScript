@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      //3.如果 foo 函数不作为对象方法被调用：
+      var obj = {
+        name: "obj",
+        foo: function () {
+          console.log(this);
+          console.log(this.name);
+        },
+      };
+      var fn = obj.foo;
+      fn(); // obj.foo 被赋值给一个全局变量，并没有作为 obj 的一个属性被调用，那么此时 this 的值是 window。
+    </script>
+  </body>
+</html>

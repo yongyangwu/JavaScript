@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>原型的概念</title>
-</head>
-<body>
-<div>
-</div>
+  </head>
+  <body>
+    <div></div>
 
-<script>
-    /*
+    <script>
+      /*
      1.什么叫JavaScript的原型？
     答：JavaScript的原型其实就是一个对象的属性,只不过这个属性很特殊，对于外界一般来说不可见的 chrome中可以通过__proto__获取
     2.那么什么是原型链了？
@@ -17,22 +16,20 @@
         链的终点是Object.prototype对象，因此Object.prototype没有原型，但我们构建一个对象这个对象的默认原型就是Object.prototype
         obj1.__proto__ = obj2;  obj2.__proto__ = obj3;  .....==>Object.prototype ==>null;
     */
-    var a = {};
-    console.log(Object.prototype ===a.__proto__);
-    /*
+      var a = {};
+      console.log(Object.prototype === a.__proto__);
+      /*
     a.__proto__  = b;其实就实现了一个继承了
     [[prototype]]是一个内置属性，虽然在chrome中可以通过__proto__访问 但是其设计本意是不可被读取和修改的，那么我们如何利用原型链来建立继承关系了？
      但是JavaScript提供了new这个关键词
      这里我们不得我们又需要引出了JavaScript另一个很神奇的属性，每个函数都有一个默认的prototype属性，函数的prototype属性是故意暴露出来的 而且这个属性不为空，
      现在我们需要把new 关键词和__proto__，prototype 进行结合和联系
      */
-     // 请看下面代码
-    function Person(){
+      // 请看下面代码
+      function Person() {}
+      var person1 = new Person();
 
-    }
-    var person1 = new Person();
-  
-    /*
+      /*
       函数通过new 调用执行的时候实际干了下面几件事情
       1.创建了一个新对象；
       2.将这个新对象的[[prototype]]连接到调用函数的prototype上
@@ -40,30 +37,24 @@
       4.返回新对象
      */
 
-    //只有函数有prototype属性
-    //每个对象都有__proto__属性当然这其中也包含函数也有__proto__属性
-    //我们创建的每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，而这个对象的用途是
-    //包含由特定类型的所有实例共享的属性和方法。
-    //按照字面意思来理解那么 prototype 就是通过 调用构造函数 而创建的 那个对象 的 实例 的 原型对象
-    //原型对象的好处是可以让所有对象实例共享它（原型对象）所包含的属性和方法
-    function Person(){
-
-    }
-    Person.prototype.name = "bob";
-    Person.prototype.sayName = function(){
+      //只有函数有prototype属性
+      //每个对象都有__proto__属性当然这其中也包含函数也有__proto__属性
+      //我们创建的每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，而这个对象的用途是
+      //包含由特定类型的所有实例共享的属性和方法。
+      //按照字面意思来理解那么 prototype 就是通过 调用构造函数 而创建的 那个对象 的 实例 的 原型对象
+      //原型对象的好处是可以让所有对象实例共享它（原型对象）所包含的属性和方法
+      function Person() {}
+      Person.prototype.name = "bob";
+      Person.prototype.sayName = function () {
         alert(this.name);
-    };
-    var person1 = new Person();//这段代码就是调用构造函数而创建的实例对象 那么Person.prototype就是person1的原型对象
-    // // person1.__proto__ = Person.prototype;
+      };
+      var person1 = new Person(); //这段代码就是调用构造函数而创建的实例对象 那么Person.prototype就是person1的原型对象
+      // // person1.__proto__ = Person.prototype;
 
-    function fn() {
-        console.log()
-    }
-    console.log(fn.__proto__.constructor);
-
-
-
-</script>
-
-</body>
+      function fn() {
+        console.log();
+      }
+      console.log(fn.__proto__.constructor);
+    </script>
+  </body>
 </html>

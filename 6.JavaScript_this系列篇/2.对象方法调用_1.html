@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      // 1.在对象中调用
+      var x = 2;
+      var obj = {
+        x: 10,
+        foo: function () {
+          console.log(this); //obj
+          console.log(this.x); //10
+        },
+      };
+      obj.foo();
+    </script>
+  </body>
+</html>

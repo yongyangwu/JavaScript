@@ -1,43 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-</head>
-<body>
-
-
-<script>
- /* 浏览器是多线程主要包含以下一些线程
-    1.GUI线程：
-         负责渲染浏览器界面，解析html css 和构建DOM树和RenderObject树，布局和绘制
-         当界面需要重绘repaint或者由于某种操作引发回流时该线程就会执行
-         注意，GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程就会被挂起，GUI更新会被保存在一个队列中等到JS引擎空闲时立即执行
-
-    2. JS引擎线程
-         也称为JS内核，负责处理JavaScript脚本程序
-         JS引擎线程负责执行JavaScript脚本，运行代码
-         JS引擎一直等待着任务队列中的任务到来，然后加以处理，使浏览器无论什么时候都只要一个JS线程在运行JS程序
-         同样注意 GUI渲染线程与JS引擎线程时互斥的，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞
-
-    3.事件触发线程
-         归属于浏览器而不是JS引擎，用于控制事件循环
-         当JS引擎执行代码块如setTimeOut时，会将对应任务添加到事件线程中
-         当对应的事件符合触发条件被触发时该线程会把事件添加到待处理队列的队尾等待JS引擎的处理
-                   （所以当遇到这段代码setTimeOut(function(){console.log(1),3000),的真正含义是setTimeOut里面的回调函数注入到Event Table中）
-
-    4.定时器触发线程
-         传说中的setTimeOut 和setInterval 所在的线程
-         浏览器定时计数器并不是JavaScript引擎计数的（因为JavaScript引擎是单线程的，如果属于阻塞线程状态就会影响计时的准确性）
-         看如下demo
-
-    5.异步的http请求线程
-         在XMLHttpRequests在连接后时通过浏览器新开一个线程请求的
-         将检测到状态变更时，如果设置有回掉函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中，再由JavaScript引擎执行
-
- */
-
-
-</script>
-</body>
+  </head>
+  <body>
+    <script>
+      setTimeout(function () {
+        console.log(1111);
+      }, 3000);
+      new Promise(function (resolve) {
+        console.log(2222);
+        setTimeout(() => {
+          console.log(5555);
+          for (var i = 0; i < 1000; i++) {
+            i == 99 && resolve();
+          }
+        }, 3000);
+      }).then(function () {
+        console.log(3333);
+      });
+      console.log(4444);
+    </script>
+  </body>
 </html>

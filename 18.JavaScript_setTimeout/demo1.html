@@ -5,12 +5,12 @@
     <title>Title</title>
   </head>
   <body>
-    <div></div>
     <script>
-      (function () {
-        a = 5;
-      })();
-      console.log(a);
+      for (var i = 0; i < 5; i++) {
+        setTimeout(function () {
+          console.log(i);
+        });
+      }
     </script>
   </body>
 </html>

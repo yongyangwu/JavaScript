@@ -5,12 +5,14 @@
     <title>Title</title>
   </head>
   <body>
-    <div></div>
+    <div id="foo"></div>
     <script>
-      (function () {
-        a = 5;
-      })();
-      console.log(a);
+      function Foo() {
+        this.x = 10;
+        console.log(this);
+      }
+      var foo = Foo();
+      console.log(foo.x);
     </script>
   </body>
 </html>

@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>作用域</title>
-</head>
-<body>
-
-
-<script>
-    var arr = [];
-    for(var i =0;i<5;i++){
-        arr[i]=(function(){
-             return function(){
-                console.log(i)
-            }
-        })(i)
-    }
-    // arr[3]()
-    console.log(arr[3]())
-
-   
-</script>
-
-</body>
+  </head>
+  <body>
+    <script>
+      var arr = [];
+      for (var i = 0; i < 5; i++) {
+        arr[i] = (function () {
+          return function () {
+            console.log(i);
+          };
+        })(i);
+      }
+      arr[3]();
+      // console.log(arr[3]())
+    </script>
+  </body>
 </html>
